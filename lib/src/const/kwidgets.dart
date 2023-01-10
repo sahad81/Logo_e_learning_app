@@ -1,0 +1,60 @@
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+
+class Ktext extends StatelessWidget {
+  const Ktext(
+      {super.key,
+      required this.text,
+      required this.color,
+      required this.size,
+       this.weight});
+  final String text;
+  final Color color;
+  final double size;
+  final FontWeight? weight;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.poppins(
+        color: color,
+        fontSize: size,
+        fontWeight: weight,
+      ),
+    );
+  }
+}
+Widget kheight15 =SizedBox(height: 15);
+Widget kheight30 =SizedBox(height: 30);
+
+
+
+// ignore: camel_case_types
+class klog_sighn extends StatelessWidget {
+   // ignore: non_constant_identifier_names
+   const klog_sighn({super.key, required this.titile,  required this.colorss});
+// ignore: non_constant_identifier_names
+final Color colorss;
+final String titile;
+  @override
+  Widget build(BuildContext context) {
+    return    Padding(
+      padding: EdgeInsets.only(bottom: 10),
+      child: Container(
+        
+        width: MediaQuery.of(context).size.width,
+        height: 50,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+                  
+                    border: Border.all(
+                      color:colorss,
+                      width: 2,
+                    )),
+        child: Center(child: Text(titile)),),
+    );
+  }
+}
