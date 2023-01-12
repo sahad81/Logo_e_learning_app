@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/src/widgets/cart_bn.dart';
 
 class LearningPage extends StatelessWidget {
   const LearningPage({super.key});
@@ -16,7 +17,7 @@ class LearningPage extends StatelessWidget {
       title: Ktext(text: "My cources", color: kblack, size: 25),
       actions: [Padding(
         padding: const EdgeInsets.all(8.0),
-        child: IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.cart,color: kblack,)),
+        child:CartBtn(),
       )],
     ),
     body: ListView.builder(itemBuilder: (context, index) {
@@ -55,7 +56,7 @@ class LearningPage extends StatelessWidget {
              Padding(
                padding: const EdgeInsets.symmetric(horizontal: 10),
                child: Ktext(text: "Learn To Build & Program Beautiful, Fast, And Native-Quality Apps With Our Flutter Course. Find the right instructor for you. Choose from many topics, skill levels, and languages. Lifetime access. Real-world experts. 213,000+ online courses. 30-day guarantee.",
-                color: kblack, size: 12),
+                color: kblack, size: MediaQuery.of(context).size.height*0.014),
              )
              ]) ),
       ));

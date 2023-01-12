@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/src/ui/pages/search/widgets/searchlist.dart';
+import 'package:logo_e_learning/src/widgets/cart_bn.dart';
 
 class Searchsreen extends StatelessWidget {
   Searchsreen({super.key});
@@ -18,7 +19,7 @@ class Searchsreen extends StatelessWidget {
           Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width*0.84,
+                width: MediaQuery.of(context).size.width*0.82,
                 height: 50,
                 child: TextField(
                 
@@ -45,8 +46,8 @@ class Searchsreen extends StatelessWidget {
                       )),
                 ),
               ),
-              Spacer(),
-              IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.cart,size: 30,))
+             Spacer(),
+             CartBtn()
             ],
           ),
 

@@ -120,7 +120,7 @@ class LoginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          width: 130,
+                          width: MediaQuery.of(context).size.height*0.13,
                           height: 1,
                           color: kwite,
                         ),
