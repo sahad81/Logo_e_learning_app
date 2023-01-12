@@ -3,7 +3,7 @@ import 'package:iconforest_flutter_cmoon_icons/flutter_cmoon_icons.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
-import 'package:logo_e_learning/src/ui/pages/homepage.dart';
+import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
 import 'package:logo_e_learning/src/ui/admin/signup_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -16,12 +16,13 @@ class LoginPage extends StatelessWidget {
         resizeToAvoidBottomInset: false, //new line
         body: SafeArea(
             child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomRight,
-                  colors: [Colors.white, Colors.blueAccent.shade200],
-                )),
+                  colors: [Colors.white, Color.fromARGB(255, 131, 151, 161)],
+                ),
+                ),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Padding(
@@ -100,7 +101,7 @@ class LoginPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
-                            color: Colors.blueAccent.shade100,
+                            color: Colors.blueGrey,
                             border: Border.all(
                               color: Colors.white,
                               width: 2,

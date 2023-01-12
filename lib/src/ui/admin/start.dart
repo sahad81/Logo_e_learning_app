@@ -21,7 +21,7 @@ class Selectionpage extends StatelessWidget {
         end: Alignment.bottomCenter,
         colors: [
           Colors.white,
-          Colors.blue.shade900,
+          Color.fromARGB(255, 131, 151, 161)
         ],
       
       )
@@ -35,8 +35,8 @@ class Selectionpage extends StatelessWidget {
             "assets/undraw_learning_sketching_nd4f (1).svg",width: 20,
           ),
         ),
-        Ktext(text: "L O G O", color: kblueGray, size: 35,weight: FontWeight.bold),
-        Ktext(text: "helo world!!", color: kblueGray, size: 16),
+        Ktext(text: "L  O  G  O", color: kblueGray, size: 35,weight: FontWeight.bold),
+        Ktext(text: "Set your career goal!!", color: kblueGray, size: 16),
         kheight30,
         Expanded(
           child: Stack(
@@ -69,7 +69,7 @@ class Selectionpage extends StatelessWidget {
                             decoration: BoxDecoration(
                                    
                                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                  color: Colors.blueAccent.shade100,
+                                  color: Colors.blueGrey,
                                   border: Border.all(
                                     color: Colors.white,
                                     width: 2,
@@ -100,7 +100,7 @@ class Selectionpage extends StatelessWidget {
                             height: 57,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(20)),
-                                color: Colors.blueAccent.shade100,
+                                color: Colors.blueGrey,
                                 border: Border.all(
                                   color: Colors.white,
                                   width: 2,

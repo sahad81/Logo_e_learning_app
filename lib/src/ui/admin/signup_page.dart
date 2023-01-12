@@ -25,7 +25,7 @@ class SignUp extends StatelessWidget {
         end: Alignment.bottomLeft,
         colors: [
           Colors.white,
-          Colors.blueAccent.shade200,
+          Color.fromARGB(255, 131, 151, 161)
         ],
       
       )
@@ -125,7 +125,7 @@ class SignUp extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(20)),
-                                color: Colors.blueAccent.shade100,
+                                color: Colors.blueGrey,
                                 border: Border.all(
                                   color: Colors.white,
                                   width: 2,

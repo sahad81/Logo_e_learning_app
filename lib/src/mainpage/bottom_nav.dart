@@ -17,7 +17,7 @@ indexnotifire.value=value;
 },
       elevation: 0,
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.blueGrey,
+      backgroundColor:  Color.fromARGB(255, 131, 151, 161),
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.black,
       selectedIconTheme: const IconThemeData(
