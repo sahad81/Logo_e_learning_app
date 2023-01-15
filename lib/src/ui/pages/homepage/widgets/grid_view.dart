@@ -11,7 +11,7 @@ class GridViewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size1 = MediaQuery.of(context).size;
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           gradient: LinearGradient(
         begin: Alignment.topRight,
         end: Alignment.bottomRight,
@@ -82,7 +82,7 @@ class MAincard extends StatelessWidget {
                         Expanded(
                             child: Ktext(
                                 text: "(2000)",
-                                color: Color.fromARGB(255, 241, 216, 138),
+                                color:Colors.grey,
                                 size: 13))
                       ],
                     ),
