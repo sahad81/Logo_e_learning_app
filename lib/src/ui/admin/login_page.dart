@@ -3,6 +3,7 @@ import 'package:iconforest_flutter_cmoon_icons/flutter_cmoon_icons.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
+import 'package:logo_e_learning/src/ui/addpage/add_page.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
 import 'package:logo_e_learning/src/ui/admin/signup_page.dart';
 
@@ -16,11 +17,11 @@ class LoginPage extends StatelessWidget {
         resizeToAvoidBottomInset: false, //new line
         body: SafeArea(
             child: Container(
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                     gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomRight,
-                  colors: [Colors.white, Color.fromARGB(255, 11, 168, 241)],
+                  colors: [Colors.white,Colors.blue.shade200],
                 ),
                 ),
                 width: MediaQuery.of(context).size.width,
@@ -33,7 +34,7 @@ class LoginPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Ktext(
-                            text: "L O G O",
+                            text: "Space Class",
                             color: kblack,
                             size: 40,
                             weight: FontWeight.bold),
@@ -91,7 +92,7 @@ class LoginPage extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Screenmainpage(),
+                          builder: (context) => Add_page(),
                         ));
                       },
                       child: Container(
@@ -101,10 +102,10 @@ class LoginPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
-                            color: Colors.blueGrey,
+                            color: Colors.blue.shade900,
                             border: Border.all(
                               color: Colors.white,
-                              width: 2,
+                              width: 3,
                             )),
                         child: Center(
                             child: Ktext(
@@ -151,13 +152,7 @@ class LoginPage extends StatelessWidget {
                               color: kwite,
                               size: 25,
                             )),
-                        IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.phone,
-                              color: kwite,
-                              size: 30,
-                            )),
+                   
                       ],
                     ),
                     SizedBox(

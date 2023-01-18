@@ -14,6 +14,7 @@ class Wishlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size1= MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kwite,
@@ -35,55 +36,52 @@ class Wishlist extends StatelessWidget {
             child: ListView.separated(
                 itemBuilder: (context, index) {
                   return SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.17,
-                    child: Container(
-                      height: 80,
-                      child: Card(
-                        child: ListTile(
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Ktext(
-                                  text: "sahad", color: Colors.grey, size: 12),
-                              Row(
-                                children: [
-                                  Ktext(text: "3  ", color: kblack, size: 12),
+                    height:size1 * 0.18,
+                    child: Card(
+                      child: ListTile(
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                             Ktext(
+                                text: "sahad", color: Colors.grey, size: size1 * 0.0145),
+                            Row(
+                              children: [
+                                Ktext(text: "3  ", color: kblack, size: size1 * 0.0145),
 
-                                  const Stars(),
-                                
+                                const Stars(),
+                              
 
-                                ],
+                              ],
+                            ),
+                            Row(children:  [
+                              Text(
+                                '₹490',
+                                style: TextStyle(
+                                    fontSize: size1 * 0.0165,
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold),
                               ),
-                              Row(children: const [
-                                Text(
-                                  '₹490',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  ' ₹600',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      decoration: TextDecoration.lineThrough,
-                                      color: Colors.grey),
-                                ),
-                              ]),
-                            ],
-                          ),
-                          trailing: IconButton(
-                              onPressed: () {}, icon: const Icon(Icons.delete)),
-                          title: Ktext(
-                              text:
-                                  "the complete flutter Development Bootcamps with dart",
-                              color: kblack,
-                              size: 15),
-                          leading: const Image(
-                              image: NetworkImage(
-                            "https://blog.logrocket.com/wp-content/uploads/2021/06/Building-card-widget-Flutter.jpg",
-                          )),
+                              Text(
+                                ' ₹600',
+                                style: TextStyle(
+                                    fontSize: size1 * 0.0165,
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.grey),
+                              ),
+                            ]),
+                          ],
                         ),
+                        trailing: IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.delete)),
+                        title: Ktext(
+                            text:
+                                "the complete flutter Development Bootcamps with dart",
+                            color: kblack,
+                            size:size1 * 0.0175),
+                        leading: const Image(
+                            image: NetworkImage(
+                          "https://blog.logrocket.com/wp-content/uploads/2021/06/Building-card-widget-Flutter.jpg",
+                        )),
                       ),
                     ),
                   );

@@ -19,7 +19,7 @@ class SignUp extends StatelessWidget {
             gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomLeft,
-          colors: [Colors.white, Color.fromARGB(255, 131, 151, 161)],
+          colors: [Colors.white,Colors.blue.shade200],
         )),
         width: MediaQuery.of(context).size.width,
         child: Padding(
@@ -35,7 +35,7 @@ class SignUp extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Ktext(
-                        text: "L O G O",
+                        text: "Space Class",
                         color: kblack,
                         size: 30,
                         weight: FontWeight.bold),
@@ -105,7 +105,7 @@ class SignUp extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20)),
-                        color: Colors.blueGrey,
+                        color: Colors.blue.shade900,
                         border: Border.all(
                           color: Colors.white,
                           width: 2,
@@ -153,13 +153,7 @@ class SignUp extends StatelessWidget {
                           color: kwite,
                           size: 25,
                         )),
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.phone,
-                          color: kwite,
-                          size: 30,
-                        )),
+                   
                   ],
                 ),
                 Expanded(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -48,115 +47,137 @@ class MyAccount extends StatelessWidget {
                       color: kblue,
                       size: 15)),
               kheight15,
-             
-              ListTile(onTap: (){
-                   showModalBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height*0.4,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 20,top: 15,right: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            
-                            children: [
-                            Ktext(text: "Personal Details", color: kblack, size: 22,weight: FontWeight.bold,),
-                            Divider(thickness: 3,),
-                             InkWell(
-                              onTap: () {
-                                
-                              },
-                              child: Ktext(text: "Name        : Sahad", color: kblack, size: 19)),
-                              kheight15,
-                        InkWell(
-                              onTap: () {
-                                
-                              },
-                              child: Ktext(text: "Email         : Sahad@gmail.com", color: kblack, size: 19)),
-                              kheight15,
-                              InkWell(
-                              onTap: () {
-                                
-                              },
-                              child: Ktext(text: "phone       : 90120202", color: kblack, size: 19)),kheight15,
-                              InkWell(
-                              onTap: () {
-                                
-                              },
-                              child: Ktext(text: "password : ******", color: kblack, size: 19)),
-                              Padding(
-                                padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.03
+              ListTile(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.only(left: 20, top: 15, right: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Ktext(
+                                  text: "Personal Details",
+                                  color: kblack,
+                                  size: 22,
+                                  weight: FontWeight.bold,
                                 ),
-                                child: ElevatedButton(onPressed: (){}, child: Text("Edit")),
-                              )
-                            ],
+                                Divider(
+                                  thickness: 3,
+                                ),
+                                InkWell(
+                                    onTap: () {},
+                                    child: Ktext(
+                                        text: "Name        : Sahad",
+                                        color: kblack,
+                                        size: 19)),
+                                kheight15,
+                                InkWell(
+                                    onTap: () {},
+                                    child: Ktext(
+                                        text: "Email         : Sahad@gmail.com",
+                                        color: kblack,
+                                        size: 19)),
+                                kheight15,
+                                InkWell(
+                                    onTap: () {},
+                                    child: Ktext(
+                                        text: "phone       : 90120202",
+                                        color: kblack,
+                                        size: 19)),
+                                kheight15,
+                                InkWell(
+                                    onTap: () {},
+                                    child: Ktext(
+                                        text: "password : ******",
+                                        color: kblack,
+                                        size: 19)),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).size.height *
+                                          0.03),
+                                  child: ElevatedButton(
+                                   style: ButtonStyle(  backgroundColor: MaterialStateProperty.all(Colors.blue.shade900),),
+                                      onPressed: () {},
+                                      child: Text("Edit")),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  );
-              },
-              
-              leading: Ktext(text: "Personal Details", color: kblack, size: 19),
-                trailing: Icon(Icons.arrow_right,)
-              ),
+                        );
+                      },
+                    );
+                  },
+                  leading:
+                      Ktext(text: "Personal Details", color: kblack, size: 19),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  )),
               ListTileA(
                 fn: () {},
                 title: "About ____",
               ),
-           ListTile(
-            onTap: () {
-               Share.share('link not fount');
-            },
-            trailing: Icon(Icons.arrow_right,
-           
-           )
-           ,leading: Ktext(text: "Share App", color: kblack, size: 18),
-           ),
-             ListTile(onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => FeedBack(),));
-             },
-             title: Ktext(text: "Feedback", color: kblack, size: 19),
-              trailing: Icon(Icons.arrow_right,)
-             ),
-              SizedBox(height: MediaQuery.of(context).size.height*0.05,),
-              TextButton(onPressed: (){
-showDialog(
-                      context: context,
-                      builder: ((context) => AlertDialog(
-                            title: const Text("Sign Out Account"),
-                            content: const Text(
-                                'Are you sure to sign out  .'),
-                            actions: <Widget>[
-                              TextButton(
-                                  onPressed: () {
-                                   return Navigator.of(context).pop();
-                                  },
-                                  child: const Text('CANCEL',
-                                      style: TextStyle(color: Colors.black))),
-                              TextButton(
-                                  onPressed: () {
-                                
-                                    //   <! second time-->
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(builder: (context) {
-                                      return const SplashScreen();
-                                    }), (route) => false);
-
-                                  
-                                  },
-                                  child:  Text(
-                                    'ACCEPT',
-                                    style: TextStyle(color: kblack)
-                                    )
-                               )
-                            ]))
-                                        );
-
-              }, child: Text("Sign out",style: TextStyle(color:kblue),))
-                          ],
+              ListTile(
+                onTap: () {
+                  Share.share('link not fount');
+                },
+                trailing: Icon(
+                  Icons.arrow_right,
+                ),
+                leading: Ktext(text: "Share App", color: kblack, size: 18),
+              ),
+              ListTile(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => FeedBack(),
+                    ));
+                  },
+                  title: Ktext(text: "Feedback", color: kblack, size: 19),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  )),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+              TextButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: ((context) => AlertDialog(
+                                title: const Text("Sign Out Account"),
+                                content:
+                                    const Text('Are you sure to sign out  .'),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () {
+                                        return Navigator.of(context).pop();
+                                      },
+                                      child: const Text('CANCEL',
+                                          style:
+                                              TextStyle(color: Colors.black))),
+                                  TextButton(
+                                      onPressed: () {
+                                        //   <! second time-->
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                          return const SplashScreen();
+                                        }), (route) => false);
+                                      },
+                                      child: Text('ACCEPT',
+                                          style: TextStyle(color: kblack)))
+                                ])));
+                  },
+                  child: Text(
+                    "Sign out",
+                    style: TextStyle(color: kblue),
+                  ))
+            ],
           ),
         )
       ]),

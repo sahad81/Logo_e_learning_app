@@ -26,6 +26,7 @@ child:      MaterialApp(
         primarySwatch: Colors.blueGrey,
       ),
       home: const SplashScreen(),
+        debugShowCheckedModeBanner: false,
     ));
   }
 }
