@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
 
 ValueNotifier<int>indexnotifire=ValueNotifier(0);
 

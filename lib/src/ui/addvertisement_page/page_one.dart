@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
-import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
+import 'package:logo_e_learning/src/ui/addvertisement_page/page_two.dart';
+import 'package:logo_e_learning/src/ui/entry/start.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
 
-class Thirdapp extends StatelessWidget {
-  const Thirdapp({super.key});
+class Add_page extends StatelessWidget {
+  const Add_page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class Thirdapp extends StatelessWidget {
               right: MediaQuery.of(context).size.width * 0.043),
           child: FloatingActionButton.extended(
             backgroundColor: Colors.blue.shade100,
-            label: Ktext(text: "let's start", color: kblack, size: 20),
+            label: Ktext(text: "Next", color: kblack, size: 20),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Screenmainpage(),
+                builder: (context) => Second_add(),
               ));
             },
 
@@ -53,14 +53,14 @@ class Thirdapp extends StatelessWidget {
                     SizedBox(
                       height: size1 * 0.23,
                       child: SvgPicture.asset(
-                        "assets/undraw_agreement_re_d4dv.svg",
+                        "assets/undraw_learning_sketching_nd4f (1).svg",
                       ),
                     ),
                     SizedBox(
-                      height: size1 * 0.03,
+                      height: size1 * 0.025,
                     ),
                     Ktext(
-                      text: "Get job from Us",
+                      text: "Learn With Us",
                       color: kblack,
                       size: MediaQuery.of(context).size.width * 0.07,
                       weight: FontWeight.bold,
@@ -69,10 +69,10 @@ class Thirdapp extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 08),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Ktext(
                           text:
-                              " you can start a career after completing a course on Space Class. The courses provided on Space Class are designed to teach students the fundamental skills they need to upskill and enter into specific fields at entry level.",
+                              "Find the right instructor for you. Choose from many topics, skill levels, and languages. Shop thousands of high-quality  on-demand online courses. Start learning today.",
                           color: kblack,
                           size: MediaQuery.of(context).size.width * 0.040,
                         ),

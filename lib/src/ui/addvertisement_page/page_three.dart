@@ -1,19 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
-import 'package:logo_e_learning/src/ui/addpage/third_add.dart';
+import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
+import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
+import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
+import 'package:provider/provider.dart';
 
-class Second_add extends StatefulWidget {
-  const Second_add({super.key});
+class Thirdapp extends StatelessWidget {
+  const Thirdapp({super.key});
 
-  @override
-  State<Second_add> createState() => _Second_addState();
-}
-
-class _Second_addState extends State<Second_add> {
   @override
   Widget build(BuildContext context) {
     final size1 = MediaQuery.of(context).size.height;
@@ -24,10 +23,13 @@ class _Second_addState extends State<Second_add> {
               right: MediaQuery.of(context).size.width * 0.043),
           child: FloatingActionButton.extended(
             backgroundColor: Colors.blue.shade100,
-            label: Ktext(text: "Next", color: kblack, size: 20),
+            label: Ktext(text: "let's start", color: kblack, size: 20),
             onPressed: () {
+              
+              
+              
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Thirdapp(),
+                builder: (context) => Screenmainpage(),
               ));
             },
 
@@ -54,16 +56,16 @@ class _Second_addState extends State<Second_add> {
                       height: size1 * 0.1,
                     ),
                     SizedBox(
-                      height: size1 * 0.23 ,
+                      height: size1 * 0.23,
                       child: SvgPicture.asset(
-                        "assets/undraw_stepping_up_g6oo (1).svg",
+                        "assets/undraw_agreement_re_d4dv.svg",
                       ),
                     ),
                     SizedBox(
                       height: size1 * 0.03,
                     ),
                     Ktext(
-                      text: "Grow with our  Team",
+                      text: "Get job from Us",
                       color: kblack,
                       size: MediaQuery.of(context).size.width * 0.07,
                       weight: FontWeight.bold,
@@ -72,16 +74,16 @@ class _Second_addState extends State<Second_add> {
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 08),
                         child: Ktext(
                           text:
-                              "Boost your academic performance, career, and quality of life. You will be able to accomplish your objective after your course is complete.",
+                              " you can start a career after completing a course on Space Class. The courses provided on Space Class are designed to teach students the fundamental skills they need to upskill and enter into specific fields at entry level.",
                           color: kblack,
                           size: MediaQuery.of(context).size.width * 0.040,
                         ),
                       ),
                     ),
-                  ]),
+                   ]),
                 ))));
   }
 }

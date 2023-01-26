@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
-import 'package:logo_e_learning/src/ui/admin/login_page.dart';
-import 'package:logo_e_learning/src/ui/admin/signup_page.dart';
+import 'package:logo_e_learning/src/ui/entry/login_page.dart';
+import 'package:logo_e_learning/src/ui/entry/signup_page.dart';
 
 class Selectionpage extends StatelessWidget {
   const Selectionpage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final size1=MediaQuery.of(context).size.height;
     return Scaffold(
         body: SafeArea(
             child: Container(
@@ -24,7 +25,7 @@ class Selectionpage extends StatelessWidget {
         SizedBox(
           width: 300,
           height: 400,
-          child:Center(child: Ktext(text: "icon of space calss", color: Colors.black, size: 30))
+          child:Center(child: Ktext(text: "icon ", color: Colors.black, size: 30))
           //  SvgPicture.asset(
           //   "assets/undraw_learning_sketching_nd4f (1).svg",
           //   width: 20,
@@ -33,9 +34,9 @@ class Selectionpage extends StatelessWidget {
         Ktext(
             text: "Space Class",
             color: kblueGray,
-            size: 35,
+            size: size1*0.04,
             weight: FontWeight.bold),
-        Ktext(text: "Set your career goal!!", color: kblueGray, size: 16),
+        Ktext(text: "Set your career goal!!", color: kblueGray, size: size1*0.02,),
         kheight30,
         Expanded(
           child: Stack(
@@ -56,11 +57,11 @@ class Selectionpage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginPage()));
+                                    builder: (context) =>  LoginPage()));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: 57,
+                            height: size1*0.070 ,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 borderRadius:
@@ -74,7 +75,7 @@ class Selectionpage extends StatelessWidget {
                                 child: Ktext(
                               text: "Log in",
                               color: kwite,
-                              size: 20,
+                              size: size1*0.026,
                               weight: FontWeight.w600,
                             )),
                           ),
@@ -89,14 +90,14 @@ class Selectionpage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SignUp()));
+                                  builder: (context) => const SignUp()));
                         },
                         child: Container(
                             width: MediaQuery.of(context).size.width,
-                            height: 57,
+                            height: size1*0.070,
                             decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
+                                    const BorderRadius.all(Radius.circular(20)),
                                 color: Colors.blue.shade900,
                                 border: Border.all(
                                   color: Colors.white,
@@ -106,7 +107,7 @@ class Selectionpage extends StatelessWidget {
                             child: Ktext(
                               text: "Sign In",
                               color: kwite,
-                              size: 20,
+                              size: size1*0.025  ,
                               weight: FontWeight.w600,
                             )),
                       ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -7,9 +9,19 @@ import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/ui/pages/cartPage/cart_page.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
+import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
+import 'package:provider/provider.dart';
 
-class ViewCourses extends StatelessWidget {
+class ViewCourses extends StatefulWidget {
   const ViewCourses({super.key});
+
+  @override
+  State<ViewCourses> createState() => _ViewCoursesState();
+}
+
+class _ViewCoursesState extends State<ViewCourses> {
+  @override
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +30,10 @@ class ViewCourses extends StatelessWidget {
       appBar: AppBar(elevation: 0, backgroundColor: kwite, actions: [
         IconButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
+       
+    Provider.of<ProviderCoursess>(context, listen: false).GetAllCourses(context);
+    
+            Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => CartPage(),
               ));
             },
@@ -27,7 +42,8 @@ class ViewCourses extends StatelessWidget {
               color: kblack,
             )),
       ]),
-      body: Padding(
+      body:
+    Padding(
         padding: const EdgeInsets.only(
           left: 15,
           right: 15,
@@ -128,7 +144,8 @@ class ViewCourses extends StatelessWidget {
               onPressed: () async {
                 // ignore: use_build_context_synchronously
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade900),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue.shade900),
               child: Ktext(text: "Buy Now", color: kwite, size: size1 * 0.020),
             ),
           ),
@@ -168,13 +185,13 @@ class ViewCourses extends StatelessWidget {
                   weight: FontWeight.bold,
                 ),
               ),
-            ], 
+            ],
           ),
           SizedBox(
             height: size1 * 0.01,
           ),
         ]),
-      ),
-    );
+      ));      
+    
   }
 }

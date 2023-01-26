@@ -13,74 +13,76 @@ class CartPage extends StatelessWidget {
     final sizeh = MediaQuery.of(context).size.height;
     final sizef = MediaQuery.of(context).size;
     return Scaffold(
-      bottomNavigationBar: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.17,
-        color: kwite,
-        child: Column(
-          children: [
-           
-        SizedBox(height: MediaQuery.of(context).size.height*0.01,),
-            Padding(
-              padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Total :',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.grey.shade700,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text(
-                        ' ₹1600',
-                        style: TextStyle(
-                            fontSize: sizeh * 0.024,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(width: 70),
-                      Text(
-                        '₹6650',
-                        style: TextStyle(
-                            fontSize: sizeh * 0.019,
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey.shade500,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      const Text("81% off")
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-          
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 14),
-              child: Container(
-                width: MediaQuery.of(context).size.width ,
-                height:  MediaQuery.of(context).size.height*0.06,
-                decoration: BoxDecoration(color: Colors.blue.shade900),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Ktext(text: "Checkout", color: kwite, size: MediaQuery.of(context).size.height*0.0229),
+      bottomNavigationBar: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height * 0.16 ,
+          color: kwite,
+          child: Column(
+            children: [
+             
+          SizedBox(height: MediaQuery.of(context).size.height*0.01,),
+              Padding(
+                padding:  EdgeInsets.only(left: 15,right: 15,top: sizeh*0.016),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Total :',
+                          style: TextStyle(
+                              fontSize: sizeh*0.02,
+                              color: Colors.grey.shade700,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        Text(
+                          ' ₹1600',
+                          style: TextStyle(
+                              fontSize: sizeh * 0.022,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 70),
+                        Text(
+                          '₹6650',
+                          style: TextStyle(
+                              fontSize: sizeh * 0.019,
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey.shade500,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        const Text("81% off")
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: MediaQuery.of(context).size.height*0.0,),
+            
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15, bottom: 14),
+                child: Container(
+                  width: MediaQuery.of(context).size.width ,
+                  height:  MediaQuery.of(context).size.height*0.06,
+                  decoration: BoxDecoration(color: Colors.blue.shade900),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Ktext(text: "Checkout", color: kwite, size: MediaQuery.of(context).size.height*0.0229),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       appBar: AppBar(

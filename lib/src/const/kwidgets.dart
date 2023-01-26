@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Ktext extends StatelessWidget {
   const Ktext(
       {super.key,
+      this.textalie=TextAlign.start,
       required this.text,
       required this.color,
       required this.size,
@@ -15,12 +16,15 @@ class Ktext extends StatelessWidget {
   final Color color;
   final double size;
   final FontWeight? weight;
+  final    textalie ;
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign:textalie,
       style: GoogleFonts.poppins(
         color: color,
+      
         fontSize: size,
         fontWeight: weight,
       ),

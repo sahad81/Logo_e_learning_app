@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:iconforest_flutter_cmoon_icons/flutter_cmoon_icons.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
-import 'package:logo_e_learning/src/ui/admin/login_page.dart';
+import 'package:logo_e_learning/src/ui/entry/login_page.dart';
+import 'package:logo_e_learning/src/ui/entry/provider_authentication.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -37,13 +39,13 @@ class SignUp extends StatelessWidget {
                     Ktext(
                         text: "Space Class",
                         color: kblack,
-                        size: 30,
+                        size: Size.height*0.034,
                         weight: FontWeight.bold),
                     kheight15,
                     Ktext(
                       text: "Welcome back! ",
                       color: kwite,
-                      size: 25,
+                   size: Size.height*0.028,
                       weight: FontWeight.bold,
                     ),
                   ],
@@ -56,16 +58,42 @@ class SignUp extends StatelessWidget {
                 TextFormField(
                     decoration:
                         const InputDecoration(labelText: "Phone number")),
+              TextFormField(
+                      obscureText:  Provider.of<Authentication>(context).passwordishideniSignup,
+                    
+                      decoration: InputDecoration(
+                       
+                suffix: InkWell(
+                    onTap:() {
+                      Provider.of<Authentication>(context,listen: false).togglepasswordviewsignUp();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Icon(   Provider.of<Authentication>(context,listen: false).passwordishideniSignup==false
+                        ? Icons.visibility 
+                        : Icons.visibility_off,),
+                    ),),
+                          labelText: "Password",
+                          labelStyle: TextStyle(color: kblack)),
+                    ),
                 TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: "Password",
-                  ),
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: "Re-Enter password",
-                  ),
-                ),
+                      obscureText:  Provider.of<Authentication>(context).passwordishiden,
+                    
+                      decoration: InputDecoration(
+                       
+                suffix: InkWell(
+                    onTap:() {
+                      Provider.of<Authentication>(context,listen: false).togglepasswordviewsignUp();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Icon(   Provider.of<Authentication>(context,listen: false).passwordishiden==false
+                        ? Icons.visibility 
+                        : Icons.visibility_off,),
+                    ),),
+                          labelText: "Password",
+                          labelStyle: TextStyle(color: kblack)),
+                    ),
                 SizedBox(
                   height: Size.height * 0.02,
                 ),
@@ -100,7 +128,7 @@ class SignUp extends StatelessWidget {
                   onTap: () {},
                   child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 57,
+                    height: Size.height*0.060,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         borderRadius:

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
-import 'package:logo_e_learning/src/ui/addpage/secondadd.dart';
-import 'package:logo_e_learning/src/ui/admin/start.dart';
-import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
+import 'package:logo_e_learning/src/ui/addvertisement_page/page_three.dart';
 
-class Add_page extends StatelessWidget {
-  const Add_page({super.key});
+class Second_add extends StatefulWidget {
+  const Second_add({super.key});
 
+  @override
+  State<Second_add> createState() => _Second_addState();
+}
+
+class _Second_addState extends State<Second_add> {
   @override
   Widget build(BuildContext context) {
     final size1 = MediaQuery.of(context).size.height;
@@ -24,7 +27,7 @@ class Add_page extends StatelessWidget {
             label: Ktext(text: "Next", color: kblack, size: 20),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Second_add(),
+                builder: (context) => Thirdapp(),
               ));
             },
 
@@ -51,16 +54,16 @@ class Add_page extends StatelessWidget {
                       height: size1 * 0.1,
                     ),
                     SizedBox(
-                      height: size1 * 0.23,
+                      height: size1 * 0.23 ,
                       child: SvgPicture.asset(
-                        "assets/undraw_learning_sketching_nd4f (1).svg",
+                        "assets/undraw_stepping_up_g6oo (1).svg",
                       ),
                     ),
                     SizedBox(
-                      height: size1 * 0.025,
+                      height: size1 * 0.03,
                     ),
                     Ktext(
-                      text: "Learn With Us",
+                      text: "Grow with our  Team",
                       color: kblack,
                       size: MediaQuery.of(context).size.width * 0.07,
                       weight: FontWeight.bold,
@@ -72,7 +75,7 @@ class Add_page extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Ktext(
                           text:
-                              "Find the right instructor for you. Choose from many topics, skill levels, and languages. Shop thousands of high-quality  on-demand online courses. Start learning today.",
+                              "Encourage  your academic performance, career, and quality of life. You will be able to accomplish your objective after your course is complete.",
                           color: kblack,
                           size: MediaQuery.of(context).size.width * 0.040,
                         ),
