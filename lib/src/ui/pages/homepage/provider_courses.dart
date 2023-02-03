@@ -4,6 +4,8 @@ import 'dart:async';
 
 import 'dart:developer';
 
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,8 +25,10 @@ class ProviderCoursess with ChangeNotifier {
   String get Errormsg => _errorMessage;
   bool get loading => _loading;
   bool get eroor => _error;
+
   Future<void> GetAllCourses(BuildContext context) async {
     try {
+      _loading = true;
       _error = false;
       _loading = true;
       _errorMessage = "";
@@ -32,9 +36,9 @@ class ProviderCoursess with ChangeNotifier {
       notifyListeners();
 
       final response = await http
-          .get(Uri.parse(
-            '$BaseUrl/user/getCourses/:index',
-          ))
+          .get(
+           Uri.parse( '$BaseUrl/user/getCourses/:index',)
+          )
           .timeout(const Duration(seconds: 10));
 //======== statusCode chacking============================================//
       if (response.statusCode == 200) {

@@ -16,8 +16,7 @@ import 'package:provider/provider.dart';
 class GridViewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<ProviderCoursess>(context, listen: false)
-        .GetAllCourses(context);
+  
     final size1 = MediaQuery.of(context).size.height;
     return Container(
         decoration: BoxDecoration(
@@ -32,9 +31,9 @@ class GridViewCard extends StatelessWidget {
               builder: (context, value, child) {
                 return RefreshIndicator(
                   child: value.loading == true
-                      ? const Center(
+                      ?  Center(
                           child: CircularProgressIndicator(
-                            strokeWidth: 3,
+                            strokeWidth: 3,color: kblack,
                           ),
                         )
                       : value.eroor == true
@@ -72,31 +71,31 @@ class GridViewCard extends StatelessWidget {
                                 ],
                               ),
                             )
-                          : GridView.count(
-                              //    physics: ,
-                              mainAxisSpacing: 1,
-                              childAspectRatio: 2 / 2.7,
-                              crossAxisSpacing: 1,
-                              shrinkWrap: true,
-                              crossAxisCount: 2,
-                              children: List.generate(
-                                  context
-                                      .read<ProviderCoursess>()
-                                      .courseNotifire
-                                      .value
-                                      .length, (index) {
+                          : ListView.builder(
+                              itemCount: context
+                                  .read<ProviderCoursess>()
+                                  .courseNotifire
+                                  .value
+                                  .length,
+                              itemBuilder: (context, index) {
                                 final values =
                                     value.courseNotifire.value[index];
+                                log(values.modules.toString());
 
                                 return MAincard(
-                                    img:
-                                        "http://10.0.2.2:3000/${values.imgPath.toString()}",
-                                    price: values.price.toString(),
-                                    offerprice: "500",
-                                    rating: "8",
-                                    ratingcount: "3000",
-                                    course_titile: values.title.toString());
-                              }),
+                                  indru: values.modules!,
+                                  discription: values.description.toString(),
+                                  language: "english",
+                                  teacher: values.teacher.toString(),
+                                  img:
+                                      "http://10.0.2.2:3000/${values.imgPath.toString()}",
+                                  price: values.price.toString(),
+                                  offerprice: "500",
+                                  rating: "4.4",
+                                  ratingcount: "200",
+                                  course_titile: values.title.toString(),
+                                );
+                              },
                             ),
                   onRefresh: () {
                     return value.GetAllCourses(context);
@@ -115,20 +114,40 @@ class MAincard extends StatelessWidget {
       required this.offerprice,
       required this.rating,
       required this.ratingcount,
-      required this.course_titile});
+      required this.course_titile,
+      required this.teacher,
+      required this.discription,
+      required this.language,
+      required this.indru});
   final String img;
   final String price;
   final String offerprice;
   final String rating;
   final String ratingcount;
   final String course_titile;
+  final String teacher;
+  final String discription;
+  final String language;
+  final List<Module> indru;
+
+
   @override
   Widget build(BuildContext context) {
     final size1 = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ViewCourses(),
+          builder: (context) => ViewCourses(
+              indrudectionVedio: indru,
+              titile: course_titile,
+              imagepath: img,
+              rating: rating,
+              ratingCount: ratingcount,
+              discription: discription,
+              language: language,
+              teacher: teacher,
+              price: price,
+              offerprice: offerprice),
         ));
       },
       child: Card(

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -7,191 +8,236 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/src/const/strings.dart';
+import 'package:logo_e_learning/src/model/courses.dart';
 import 'package:logo_e_learning/src/ui/pages/cartPage/cart_page.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
+import 'package:logo_e_learning/src/ui/pages/view_course/show_indrudection_video.dart';
 import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
 
-class ViewCourses extends StatefulWidget {
-  const ViewCourses({super.key});
+class ViewCourses extends StatelessWidget {
+  ViewCourses(
+      {super.key,
+      required this.titile,
+      required this.imagepath,
+      required this.rating,
+      required this.ratingCount,
+      required this.discription,
+      required this.language,
+      required this.teacher,
+      required this.price,
+      required this.offerprice,
+      required this.indrudectionVedio});
 
-  @override
-  State<ViewCourses> createState() => _ViewCoursesState();
-}
+  final String titile;
+  final String imagepath;
+  final String rating;
+  final String ratingCount;
+  final String discription;
+  final String language;
+  final String teacher;
+  final String price;
+  final String offerprice;
+  final List<Module> indrudectionVedio;
 
-class _ViewCoursesState extends State<ViewCourses> {
-  @override
+  String? videoIndrudection;
+  bool isvideo = false;
 
+  init() {
+    log("${videoIndrudection.toString()}hleooo");
+      log("h${indrudectionVedio.length.toString()}");
+    log("h${indrudectionVedio.toString()}");
+    for (int i = 0; i < indrudectionVedio.length; i++) {
+      log(indrudectionVedio[i].videoTitle.toString());
+      if (indrudectionVedio[i].videoTitle.toString() == "indrudection") {
+        videoIndrudection = indrudectionVedio[i].vedioPath.toString();
+         log("${videoIndrudection.toString()}hleooo");
+      }else{
+        log("not");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    init();
     final size1 = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(elevation: 0, backgroundColor: kwite, actions: [
-        IconButton(
-            onPressed: () {
-       
-    Provider.of<ProviderCoursess>(context, listen: false).GetAllCourses(context);
-    
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CartPage(),
-              ));
-            },
-            icon: Icon(
-              CupertinoIcons.cart,
-              color: kblack,
-            )),
-      ]),
-      body:
-    Padding(
-        padding: const EdgeInsets.only(
-          left: 15,
-          right: 15,
-          top: 10,
-        ),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
-            height: size1 * 0.02,
+        appBar: AppBar(elevation: 0, backgroundColor: kwite, actions: [
+          IconButton(
+              onPressed: () {
+                Provider.of<ProviderCoursess>(context, listen: false)
+                    .GetAllCourses(context);
+
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CartPage(),
+                ));
+              },
+              icon: Icon(
+                CupertinoIcons.cart,
+                color: kblack,
+              )),
+        ]),
+        body: Padding(
+          padding: const EdgeInsets.only(
+            left: 15,
+            right: 15,
+            top: 10,
           ),
-          InkWell(
-            onTap: () {},
-            onHover: (value) {},
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 15),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: size1 * 0.3,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          "https://blog.logrocket.com/wp-content/uploads/2021/06/Building-card-widget-Flutter.jpg"),
-                      fit: BoxFit.cover),
-                ),
-                child: Icon(
-                  Icons.play_arrow_sharp,
-                  size: 60,
+          child: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SizedBox(
+                height: size1 * 0.02,
+              ),
+              InkWell(
+                onTap: () {},
+                onHover: (value) {},
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ShowIndrudectionVideo(
+                            url: "$BaseUrl/$videoIndrudection"),
+                      ));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: size1 * 0.3,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage("$imagepath"),
+                            fit: BoxFit.cover),
+                      ),
+                      child: Icon(
+                        Icons.play_arrow_sharp,
+                        size: 60,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Ktext(
-              text: "Flutter dart comptete Guide ",
-              color: kblack,
-              size: size1 * 0.027),
-          SizedBox(
-            height: size1 * 0.01,
-          ),
-          Ktext(
-              text:
-                  "A completed Guid to the Flutter Framework for Building Native ios and android app ",
-              color: Colors.grey.shade600,
-              size: size1 * 0.018),
-          Row(
-            children: [
+              Ktext(text: titile, color: kblack, size: size1 * 0.027),
+              SizedBox(
+                height: size1 * 0.01,
+              ),
               Ktext(
-                text: "4.4",
-                color: kblack,
-                size: size1 * 0.018,
-                weight: FontWeight.bold,
+                  text: discription,
+                  color: Colors.grey.shade600,
+                  size: size1 * 0.018),
+              Row(
+                children: [
+                  Ktext(
+                    text: rating,
+                    color: kblack,
+                    size: size1 * 0.018,
+                    weight: FontWeight.bold,
+                  ),
+                  SizedBox(
+                    width: 7,
+                  ),
+                  Stars(),
+                ],
+              ),
+              Ktext(
+                  text: "($ratingCount ratings)",
+                  color: kblack,
+                  size: size1 * 0.013),
+              SizedBox(
+                height: size1 * 0.001,
+              ),
+              Ktext(
+                  text: "Created by $teacher",
+                  color: Colors.grey.shade600,
+                  size: size1 * 0.012),
+              Row(
+                children: [
+                  Icon(
+                    Icons.language,
+                    size: size1 * 0.017,
+                  ),
+                  Ktext(text: language, color: kblack, size: size1 * 0.017),
+                ],
+              ),
+              Row(
+                children: [
+                  Ktext(
+                      text: "₹$price",
+                      color: kblack,
+                      size: size1 * 0.020,
+                      weight: FontWeight.bold),
+                  Text(
+                    '  ₹$offerprice',
+                    style: GoogleFonts.poppins(
+                        fontSize: size1 * 0.020,
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.grey.shade500,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
               SizedBox(
-                width: 7,
+                height: size1 * 0.03,
               ),
-              Stars(),
-            ],
-          ),
-          Ktext(text: "(50004958 ratings)", color: kblack, size: size1 * 0.013),
-          SizedBox(
-            height: size1 * 0.001,
-          ),
-          Ktext(
-              text: "Created by sahad",
-              color: Colors.grey.shade600,
-              size: size1 * 0.012),
-          Row(
-            children: [
-              Icon(
-                Icons.language,
-                size: size1 * 0.017,
-              ),
-              Ktext(text: "  english", color: kblack, size: size1 * 0.017),
-            ],
-          ),
-          Row(
-            children: [
-              Ktext(
-                  text: "₹490.00",
-                  color: kblack,
-                  size: size1 * 0.020,
-                  weight: FontWeight.bold),
-              Text(
-                '  ₹6650.00',
-                style: GoogleFonts.poppins(
-                    fontSize: size1 * 0.020,
-                    decoration: TextDecoration.lineThrough,
-                    color: Colors.grey.shade500,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: size1 * 0.03,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.06,
-            child: ElevatedButton(
-              onPressed: () async {
-                // ignore: use_build_context_synchronously
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade900),
-              child: Ktext(text: "Buy Now", color: kwite, size: size1 * 0.020),
-            ),
-          ),
-          SizedBox(
-            height: size1 * 0.035,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  // ignore: use_build_context_synchronously
-                },
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(150, 50),
-                    maximumSize: const Size(150, 50),
-                    backgroundColor: kwite),
-                child: Ktext(
-                  text: "Add to wishlist",
-                  color: kblack,
-                  size: size1 * 0.017,
-                  weight: FontWeight.bold,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.06,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    // ignore: use_build_context_synchronously
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade900),
+                  child:
+                      Ktext(text: "Buy Now", color: kwite, size: size1 * 0.020),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () async {
-                  // ignore: use_build_context_synchronously
-                },
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(150, 50),
-                    maximumSize: const Size(150, 100),
-                    backgroundColor: Colors.white),
-                child: Ktext(
-                  text: "Add to cart",
-                  color: kblack,
-                  size: size1 * 0.017,
-                  weight: FontWeight.bold,
-                ),
+              SizedBox(
+                height: size1 * 0.035,
               ),
-            ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () async {
+                      // ignore: use_build_context_synchronously
+                    },
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(150, 50),
+                        maximumSize: const Size(150, 50),
+                        backgroundColor: kwite),
+                    child: Ktext(
+                      text: "Add to wishlist",
+                      color: kblack,
+                      size: size1 * 0.017,
+                      weight: FontWeight.bold,
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // ignore: use_build_context_synchronously
+                    },
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(150, 50),
+                        maximumSize: const Size(150, 100),
+                        backgroundColor: Colors.white),
+                    child: Ktext(
+                      text: "Add to cart",
+                      color: kblack,
+                      size: size1 * 0.017,
+                      weight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: size1 * 0.01,
+              ),
+            ]),
           ),
-          SizedBox(
-            height: size1 * 0.01,
-          ),
-        ]),
-      ));      
-    
+        ));
   }
 }

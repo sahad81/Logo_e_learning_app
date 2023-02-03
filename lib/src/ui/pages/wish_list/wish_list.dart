@@ -1,19 +1,19 @@
-import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
+import 'package:logo_e_learning/src/ui/pages/wish_list/controller_vishllist.dart';
 import 'package:logo_e_learning/src/widgets/cart_bn.dart';
+import 'package:provider/provider.dart';
 
 class Wishlist extends StatelessWidget {
   const Wishlist({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<VishListP>(context).AddToWishlist(context);
     final size1= MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(

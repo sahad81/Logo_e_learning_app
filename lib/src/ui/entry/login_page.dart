@@ -56,6 +56,8 @@ class LoginPage extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.050,
                   ),
                   TextFormField(
+
+                    controller: Provider.of<Authentication>(context).email_controler,
                       validator: (value) {
                         if (!isEmail(value.toString())) {
                           return "please enter valid eamil address";
@@ -69,6 +71,7 @@ class LoginPage extends StatelessWidget {
                           labelStyle: TextStyle(color: kblack))),
                   kheight30,
                   TextFormField(
+                        controller: Provider.of<Authentication>(context).password_controller,
                     validator: (value) {
                       
                       if (value!.isEmpty) {
@@ -115,9 +118,7 @@ class LoginPage extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       if (formkey.currentState!.validate()) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Screenmainpage(),
-                        ));
+                        Provider.of<Authentication>(context,listen: false).loginpostfunction(context);
                       }
                     },
                     child: Container(

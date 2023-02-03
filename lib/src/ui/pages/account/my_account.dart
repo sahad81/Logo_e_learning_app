@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/splash/splash_screen.dart';
+import 'package:logo_e_learning/src/ui/entry/user_sercies.dart';
 import 'package:logo_e_learning/src/ui/pages/account/feadback/account_provider.dart';
 import 'package:logo_e_learning/src/ui/pages/account/feadback/feadbackpage.dart';
 import 'package:logo_e_learning/src/ui/pages/account/personal_details/personal_details.dart';
@@ -162,12 +163,7 @@ class MyAccount extends StatelessWidget {
                                   TextButton(
                                       onPressed: () {
                                         //   <! second time-->
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                          return const SplashScreen();
-                                        }), (route) => false);
+                                     UserServieces().removeUser(context);
                                       },
                                       child: Text('ACCEPT',
                                           style: TextStyle(color: kblack)))
