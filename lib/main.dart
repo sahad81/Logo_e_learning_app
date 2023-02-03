@@ -8,6 +8,7 @@ import 'package:logo_e_learning/src/ui/pages/account/feadback/account_provider.d
 import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
 import 'package:logo_e_learning/src/ui/pages/wish_list/controller_vishllist.dart';
 import 'package:provider/provider.dart';
+import 'package:validators/sanitizers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,7 @@ ChangeNotifierProvider(create: (context) => Feadbackprovider()
 ),
 ChangeNotifierProvider(create: (context) => Authentication() ),
 ChangeNotifierProvider(create: (context) => ProviderCoursess() ),
-ChangeNotifierProvider(create: (context) => VishListP() )
+ChangeNotifierProvider(create: (context) => WishListP() )
     ],
 child:      MaterialApp(
       title: 'Space Class',

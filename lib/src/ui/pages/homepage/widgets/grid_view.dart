@@ -10,13 +10,14 @@ import 'package:logo_e_learning/src/model/courses.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
 import 'package:logo_e_learning/src/ui/pages/view_course/view_course.dart';
+import 'package:logo_e_learning/src/ui/pages/wish_list/controller_vishllist.dart';
+import 'package:logo_e_learning/src/ui/pages/wish_list/wish_list_widget.dart';
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 
 class GridViewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  
     final size1 = MediaQuery.of(context).size.height;
     return Container(
         decoration: BoxDecoration(
@@ -31,9 +32,10 @@ class GridViewCard extends StatelessWidget {
               builder: (context, value, child) {
                 return RefreshIndicator(
                   child: value.loading == true
-                      ?  Center(
+                      ? Center(
                           child: CircularProgressIndicator(
-                            strokeWidth: 3,color: kblack,
+                            strokeWidth: 3,
+                            color: kblack,
                           ),
                         )
                       : value.eroor == true
@@ -83,6 +85,7 @@ class GridViewCard extends StatelessWidget {
                                 log(values.modules.toString());
 
                                 return MAincard(
+                                  id: values.id!,
                                   indru: values.modules!,
                                   discription: values.description.toString(),
                                   language: "english",
@@ -118,7 +121,8 @@ class MAincard extends StatelessWidget {
       required this.teacher,
       required this.discription,
       required this.language,
-      required this.indru});
+      required this.indru,
+      required this.id});
   final String img;
   final String price;
   final String offerprice;
@@ -129,8 +133,7 @@ class MAincard extends StatelessWidget {
   final String discription;
   final String language;
   final List<Module> indru;
-
-
+  final String id;
   @override
   Widget build(BuildContext context) {
     final size1 = MediaQuery.of(context).size.height;
@@ -225,7 +228,9 @@ class MAincard extends StatelessWidget {
                           Row(
                             children: [
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    WishListP.AddToWishlist(id, context);
+                                  },
                                   icon: Icon(
                                     CupertinoIcons.heart,
                                     size: 27,

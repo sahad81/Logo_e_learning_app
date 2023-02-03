@@ -5,7 +5,8 @@ import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
 import 'package:logo_e_learning/src/ui/pages/learnings/learnigs.dart';
 import 'package:logo_e_learning/src/ui/pages/account/my_account.dart';
 import 'package:logo_e_learning/src/ui/pages/search/search_page.dart';
-import 'package:logo_e_learning/src/ui/pages/wish_list/wish_list.dart';
+import 'package:logo_e_learning/src/ui/pages/wish_list/wish_list_widget.dart';
+import 'package:logo_e_learning/src/ui/pages/wish_list/wishlist_page.dart';
 
 // ignore: must_be_immutable
 class Screenmainpage extends StatelessWidget {

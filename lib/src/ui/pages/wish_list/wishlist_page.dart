@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:logo_e_learning/src/const/colors.dart';
@@ -13,7 +12,7 @@ class Wishlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<VishListP>(context).AddToWishlist(context);
+   
     final size1= MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
