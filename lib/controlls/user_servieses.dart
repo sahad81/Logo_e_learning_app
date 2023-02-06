@@ -29,7 +29,7 @@ class  UserServieces{
      prefs.setBool('isLoggedIn', false);
      
     prefs.remove('user_details',);
- Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>SplashScreen(),));
+ Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>const SplashScreen(),));
   }
 
 }

@@ -5,9 +5,10 @@ import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
 import 'package:logo_e_learning/src/model/courses.dart';
-import 'package:logo_e_learning/src/ui/entry/provider_authentication.dart';
+import 'package:logo_e_learning/controlls/provider_authentication.dart';
 import 'package:logo_e_learning/src/ui/entry/start.dart';
-import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
+import 'package:logo_e_learning/controlls/provider_courses.dart';
+import 'package:logo_e_learning/controlls/controller_vishllist.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,6 +43,8 @@ class SplashScreen extends StatelessWidget {
     if (b == true) {
       Provider.of<ProviderCoursess>(context, listen: false)
           .GetAllCourses(context);
+             Provider.of<WishListP>(context, listen: false)
+          .GetWishlist(context);
       log("uers");
       Future.delayed(const Duration(seconds: 1)).whenComplete(
         () => Navigator.of(context).pushReplacement(

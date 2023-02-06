@@ -4,7 +4,7 @@ import 'package:iconforest_flutter_cmoon_icons/flutter_cmoon_icons.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/ui/entry/login_page.dart';
-import 'package:logo_e_learning/src/ui/entry/provider_authentication.dart';
+import 'package:logo_e_learning/controlls/provider_authentication.dart';
 import 'package:provider/provider.dart';
 
 class SignUp extends StatelessWidget {

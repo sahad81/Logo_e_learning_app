@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logo_e_learning/controlls/controller_vishllist.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/const/strings.dart';
 import 'package:logo_e_learning/src/model/courses.dart';
 import 'package:logo_e_learning/src/ui/pages/cartPage/cart_page.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
-import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
+import 'package:logo_e_learning/controlls/provider_courses.dart';
 import 'package:logo_e_learning/src/ui/pages/view_course/show_indrudection_video.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
@@ -29,7 +30,7 @@ class ViewCourses extends StatelessWidget {
       required this.teacher,
       required this.price,
       required this.offerprice,
-      required this.indrudectionVedio});
+      required this.indrudectionVedio,required this.id, });
 
   final String titile;
   final String imagepath;
@@ -40,7 +41,9 @@ class ViewCourses extends StatelessWidget {
   final String teacher;
   final String price;
   final String offerprice;
+  final String id;
   final List<Module> indrudectionVedio;
+
 
   String? videoIndrudection;
   bool isvideo = false;
@@ -112,7 +115,7 @@ class ViewCourses extends StatelessWidget {
                             image: NetworkImage("$imagepath"),
                             fit: BoxFit.cover),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.play_arrow_sharp,
                         size: 60,
                       ),
@@ -139,7 +142,7 @@ class ViewCourses extends StatelessWidget {
                   SizedBox(
                     width: 7,
                   ),
-                  Stars(),
+                  const Stars(),
                 ],
               ),
               Ktext(
@@ -201,21 +204,32 @@ class ViewCourses extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    onPressed: () async {
-                      // ignore: use_build_context_synchronously
-                    },
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150, 50),
-                        maximumSize: const Size(150, 50),
-                        backgroundColor: kwite),
-                    child: Ktext(
-                      text: "Add to wishlist",
-                      color: kblack,
-                      size: size1 * 0.017,
-                      weight: FontWeight.bold,
-                    ),
-                  ),
+                  Consumer<WishListP>(
+                    builder: (context, value, child) {
+                      
+                    
+                    
+                    return ElevatedButton(
+                      onPressed: ()  {
+                        if (value.checkifinWishlistorNot(id)==false
+                        ) {
+                             value.AddToWishlist(id, context);
+                        }else{
+                           value.RemoveFromWishlist(id, context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(150, 50),
+                          maximumSize: const Size(150, 50),
+                          backgroundColor: kwite),
+                      child: Ktext(
+                        text: value.checkifinWishlistorNot(id)==false?"Add to wishlist":"Wishlisted",
+                        color: kblack,
+                        size: size1 * 0.017,
+                        weight: FontWeight.bold,
+                      ),
+                    );
+      }    ),
                   ElevatedButton(
                     onPressed: () async {
                       // ignore: use_build_context_synchronously

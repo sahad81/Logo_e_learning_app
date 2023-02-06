@@ -10,8 +10,8 @@ import 'package:logo_e_learning/src/const/strings.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
 import 'package:logo_e_learning/src/model/login/login.dart';
 
-import 'package:logo_e_learning/src/ui/entry/user_sercies.dart';
-import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
+import 'package:logo_e_learning/controlls/user_servieses.dart';
+import 'package:logo_e_learning/controlls/provider_courses.dart';
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -54,7 +54,7 @@ class Authentication extends ChangeNotifier {
         email_controler.clear();
         password_controller.clear();
 
-        Provider.of<ProviderCoursess>(context).GetAllCourses(context);
+        Provider.of<ProviderCoursess>(context,listen: false).GetAllCourses(context);
         notifyListeners();
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => Screenmainpage()));
@@ -85,7 +85,7 @@ class Authentication extends ChangeNotifier {
             "server problem please try again later", Colors.red, context);
       } else if (e.response!.statusCode == 554) {
         showSnackBar("User not found", Colors.red, context);
-      } else if (e.response!.statusCode == 554) {
+      } else if (e.response!.statusCode == 403) {
         showSnackBar("Wrong Password", Colors.red, context);
       }
     } catch (e) {

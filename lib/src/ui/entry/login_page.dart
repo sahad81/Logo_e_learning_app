@@ -4,7 +4,7 @@ import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
 import 'package:logo_e_learning/src/ui/addvertisement_page/page_one.dart';
-import 'package:logo_e_learning/src/ui/entry/provider_authentication.dart';
+import 'package:logo_e_learning/controlls/provider_authentication.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
 import 'package:logo_e_learning/src/ui/entry/signup_page.dart';
 import 'package:provider/provider.dart';

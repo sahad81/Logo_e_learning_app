@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/model/courses.dart';
-import 'package:logo_e_learning/src/ui/pages/homepage/provider_courses.dart';
+import 'package:logo_e_learning/controlls/provider_courses.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
 import 'package:logo_e_learning/src/ui/pages/view_course/view_course.dart';
-import 'package:logo_e_learning/src/ui/pages/wish_list/controller_vishllist.dart';
+import 'package:logo_e_learning/controlls/controller_vishllist.dart';
 import 'package:logo_e_learning/src/ui/pages/wish_list/wish_list_widget.dart';
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
@@ -67,7 +67,10 @@ class GridViewCard extends StatelessWidget {
                                   ),
                                   ElevatedButton(
                                       onPressed: () {
+                                               Provider.of<WishListP>(context,listen: false)
+                                            .GetWishlist(context);
                                         value.GetAllCourses(context);
+                                 
                                       },
                                       child: const Text("Retry")),
                                 ],
@@ -141,6 +144,8 @@ class MAincard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ViewCourses(
+         
+            id: id,
               indrudectionVedio: indru,
               titile: course_titile,
               imagepath: img,
@@ -225,27 +230,38 @@ class MAincard extends StatelessWidget {
                             ),
                           ]),
                           // SizedBox(width: MediaQuery.of(context).size.width*0.035,),
-                          Row(
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    WishListP.AddToWishlist(id, context);
-                                  },
-                                  icon: Icon(
-                                    CupertinoIcons.heart,
-                                    size: 27,
-                                  )),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 5),
-                                child: IconButton(
-                                    onPressed: () {},
+                          Consumer<WishListP>(builder: (context, value, _) {
+                            return Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      //is a static funtion so //
+                                      value.checkifinWishlistorNot(id) == false
+                                          ? value.AddToWishlist(id, context)
+                                          : value.RemoveFromWishlist(
+                                              id, context);
+                                      value.GetWishlist(context);
+                                    },
                                     icon: Icon(
-                                      CupertinoIcons.shopping_cart,
-                                      size: size1 * 0.030,
+                                      Icons.favorite,
+                                      color: value.checkifinWishlistorNot(id) ==
+                                              true
+                                          ? Colors.red
+                                          : Colors.grey,
+                                      size: 30,
                                     )),
-                              )
-                            ],
-                          )
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 5),
+                                  child: IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(
+                                        CupertinoIcons.shopping_cart,
+                                        size: size1 * 0.030,
+                                      )),
+                                )
+                              ],
+                            );
+                          })
                         ],
                       ),
                     ],
