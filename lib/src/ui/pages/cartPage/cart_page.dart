@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -169,16 +170,19 @@ class CartPage extends StatelessWidget {
                                 "the complete flutter Development Bootcamps with dart",
                             color: kblack,
                             size: sizeh * 0.017),
-                        leading: const Image(
-                            image: NetworkImage(
-                          "https://blog.logrocket.com/wp-content/uploads/2021/06/Building-card-widget-Flutter.jpg",
-                        )),
+                        leading: SizedBox(
+                          width: MediaQuery.of(context).size.width*0.18,
+                          child: const Image(
+                              image: NetworkImage(
+                            "https://blog.logrocket.com/wp-content/uploads/2021/06/Building-card-widget-Flutter.jpg",
+                          )),
+                        ),
                       ),
                     ),
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(),
-                itemCount: 10),
+                itemCount: 2),
           ))
         ]),
       ),

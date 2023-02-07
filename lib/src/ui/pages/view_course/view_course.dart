@@ -1,36 +1,38 @@
 import 'dart:developer';
 
-import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:logo_e_learning/controlls/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/cart_controller.dart';
+import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/provider_courses.dart';
+
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/const/strings.dart';
-import 'package:logo_e_learning/src/model/courses.dart';
+import 'package:logo_e_learning/src/model/courses_model.dart';
 import 'package:logo_e_learning/src/ui/pages/cartPage/cart_page.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
-import 'package:logo_e_learning/controlls/provider_courses.dart';
+
 import 'package:logo_e_learning/src/ui/pages/view_course/show_indrudection_video.dart';
 import 'package:provider/provider.dart';
-import 'package:video_player/video_player.dart';
 
 class ViewCourses extends StatelessWidget {
-  ViewCourses(
-      {super.key,
-      required this.titile,
-      required this.imagepath,
-      required this.rating,
-      required this.ratingCount,
-      required this.discription,
-      required this.language,
-      required this.teacher,
-      required this.price,
-      required this.offerprice,
-      required this.indrudectionVedio,required this.id, });
+  ViewCourses({
+    super.key,
+    required this.titile,
+    required this.imagepath,
+    required this.rating,
+    required this.ratingCount,
+    required this.discription,
+    required this.language,
+    required this.teacher,
+    required this.price,
+    required this.offerprice,
+    required this.indrudectionVedio,
+    required this.id,
+  });
 
   final String titile;
   final String imagepath;
@@ -44,20 +46,20 @@ class ViewCourses extends StatelessWidget {
   final String id;
   final List<Module> indrudectionVedio;
 
-
   String? videoIndrudection;
   bool isvideo = false;
 
-  init() {
-    log("${videoIndrudection.toString()}hleooo");
-      log("h${indrudectionVedio.length.toString()}");
-    log("h${indrudectionVedio.toString()}");
+  init(context) {
+    //  Provider.of<CartProvider>(context).GetCartslist(context);
+    //  log("${videoIndrudection.toString()}hleooo");
+    //  log("h${indrudectionVedio.length.toString()}");
+    // log("h${indrudectionVedio.toString()}");
     for (int i = 0; i < indrudectionVedio.length; i++) {
       log(indrudectionVedio[i].videoTitle.toString());
       if (indrudectionVedio[i].videoTitle.toString() == "indrudection") {
         videoIndrudection = indrudectionVedio[i].vedioPath.toString();
-         log("${videoIndrudection.toString()}hleooo");
-      }else{
+        log("${videoIndrudection.toString()}hleooo");
+      } else {
         log("not");
       }
     }
@@ -65,7 +67,7 @@ class ViewCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    init();
+    init(context);
     final size1 = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(elevation: 0, backgroundColor: kwite, actions: [
@@ -204,18 +206,13 @@ class ViewCourses extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Consumer<WishListP>(
-                    builder: (context, value, child) {
-                      
-                    
-                    
+                  Consumer<WishListP>(builder: (context, value, child) {
                     return ElevatedButton(
-                      onPressed: ()  {
-                        if (value.checkifinWishlistorNot(id)==false
-                        ) {
-                             value.AddToWishlist(id, context);
-                        }else{
-                           value.RemoveFromWishlist(id, context);
+                      onPressed: () {
+                        if (value.checkifinWishlistorNot(id) == true) {
+                          value.AddToWishlist(id, context);
+                        } else {
+                          value.RemoveFromWishlist(id, context);
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -223,28 +220,44 @@ class ViewCourses extends StatelessWidget {
                           maximumSize: const Size(150, 50),
                           backgroundColor: kwite),
                       child: Ktext(
-                        text: value.checkifinWishlistorNot(id)==false?"Add to wishlist":"Wishlisted",
+                        text: value.checkifinWishlistorNot(id) == false
+                            ? "Add to wishlist"
+                            : "Wishlisted",
                         color: kblack,
                         size: size1 * 0.017,
                         weight: FontWeight.bold,
                       ),
                     );
-      }    ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // ignore: use_build_context_synchronously
-                    },
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150, 50),
-                        maximumSize: const Size(150, 100),
-                        backgroundColor: Colors.white),
-                    child: Ktext(
-                      text: "Add to cart",
-                      color: kblack,
-                      size: size1 * 0.017,
-                      weight: FontWeight.bold,
-                    ),
-                  ),
+                  }),
+                  Consumer<CartProvider>(builder: (context, value, child) {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        if (value.checkinCart(id) == true) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => CartPage(),
+                          ));
+                        } else {
+                          value.addtocart(id, context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(150, 50),
+                          maximumSize: const Size(150, 100),
+                          backgroundColor: Colors.white),
+                      child: value.cartList.isEmpty
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : Ktext(
+                              text: value.checkinCart(id) == true
+                                  ? "Go to cart"
+                                  : " Add to cart",
+                              color: kblack,
+                              size: size1 * 0.017,
+                              weight: FontWeight.bold,
+                            ),
+                    );
+                  }),
                 ],
               ),
               SizedBox(

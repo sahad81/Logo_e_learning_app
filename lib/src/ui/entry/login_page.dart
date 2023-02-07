@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconforest_flutter_cmoon_icons/flutter_cmoon_icons.dart';
+import 'package:logo_e_learning/controllers/provider_authentication.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
 import 'package:logo_e_learning/src/ui/addvertisement_page/page_one.dart';
-import 'package:logo_e_learning/controlls/provider_authentication.dart';
+
 import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
 import 'package:logo_e_learning/src/ui/entry/signup_page.dart';
 import 'package:provider/provider.dart';
@@ -56,8 +57,8 @@ class LoginPage extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.050,
                   ),
                   TextFormField(
-
-                    controller: Provider.of<Authentication>(context).email_controler,
+                      controller:
+                          Provider.of<Authentication>(context).email_controler,
                       validator: (value) {
                         if (!isEmail(value.toString())) {
                           return "please enter valid eamil address";
@@ -65,18 +66,16 @@ class LoginPage extends StatelessWidget {
                           return null;
                         }
                       },
-                   
                       decoration: InputDecoration(
                           labelText: "Email..",
                           labelStyle: TextStyle(color: kblack))),
                   kheight30,
                   TextFormField(
-                        controller: Provider.of<Authentication>(context).password_controller,
+                    controller: Provider.of<Authentication>(context)
+                        .password_controller,
                     validator: (value) {
-                      
                       if (value!.isEmpty) {
                         return "please enter valid password";
-                        
                       }
                     },
                     obscureText:
@@ -118,7 +117,8 @@ class LoginPage extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       if (formkey.currentState!.validate()) {
-                        Provider.of<Authentication>(context,listen: false).loginpostfunction(context);
+                        Provider.of<Authentication>(context, listen: false)
+                            .loginpostfunction(context);
                       }
                     },
                     child: Container(

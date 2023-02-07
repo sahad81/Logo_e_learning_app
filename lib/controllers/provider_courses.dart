@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:logo_e_learning/src/const/strings.dart';
 
-import 'package:logo_e_learning/src/model/courses.dart';
+import 'package:logo_e_learning/src/model/courses_model.dart';
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
 
 class ProviderCoursess with ChangeNotifier {
@@ -20,7 +20,7 @@ class ProviderCoursess with ChangeNotifier {
   bool _loading = false;
   String _errorMessage = '';
 
-  ValueNotifier<List<CouressModel>> courseNotifire = ValueNotifier([]);
+ List<CouressModel> allCourse =[];
 
   String get Errormsg => _errorMessage;
   bool get loading => _loading;
@@ -46,13 +46,13 @@ class ProviderCoursess with ChangeNotifier {
 
         final data = couressModelFromJson(response.body);
        
-        courseNotifire.value.clear();
-        courseNotifire.value.addAll(data);
-        courseNotifire.notifyListeners;
+       allCourse .clear();
+       allCourse.addAll(data);
+
         _loading = false;
         notifyListeners();
 
-        log(courseNotifire.value.length.toString());
+        log(allCourse.length.toString());
         notifyListeners();
       } else {  
         log('error');

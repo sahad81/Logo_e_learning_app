@@ -1,19 +1,18 @@
 // To parse this JSON data, do
 
-
 import 'dart:convert';
 
-GetWishlistModel getWishlistFromJson(String str) =>
-    GetWishlistModel.fromJson(json.decode(str));
-    
-   mapToString(Map<String, dynamic> map) {
-   jsonEncode(map);
-   GetWishlistModel GetWishlistModelFromJson(String str) =>
-    GetWishlistModel.fromJson(json.decode(str));
-    
+WishlistModel getWishlistFromJson(String str) =>
+    WishlistModel.fromJson(json.decode(str));
+
+mapToString(Map<String, dynamic> map) {
+  jsonEncode(map);
+  WishlistModel WislistAndCartFromJson(String str) =>
+      WishlistModel.fromJson(json.decode(str));
 }
-class GetWishlistModel {
-  GetWishlistModel({
+
+class WishlistModel {
+  WishlistModel({
     required this.status,
     required this.data,
   });
@@ -21,7 +20,7 @@ class GetWishlistModel {
   bool status;
   List<Datum> data;
 
-  factory GetWishlistModel.fromJson(Map<String, dynamic> json) => GetWishlistModel(
+  factory WishlistModel.fromJson(Map<String, dynamic> json) => WishlistModel(
         status: json["status"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );

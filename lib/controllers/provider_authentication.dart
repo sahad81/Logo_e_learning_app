@@ -6,12 +6,13 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
+import 'package:logo_e_learning/controllers/provider_courses.dart';
+import 'package:logo_e_learning/controllers/user_servieses.dart';
 import 'package:logo_e_learning/src/const/strings.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
 import 'package:logo_e_learning/src/model/login/login.dart';
 
-import 'package:logo_e_learning/controlls/user_servieses.dart';
-import 'package:logo_e_learning/controlls/provider_courses.dart';
+
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

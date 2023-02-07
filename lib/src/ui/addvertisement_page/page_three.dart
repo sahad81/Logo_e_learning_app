@@ -7,7 +7,7 @@ import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/homepage.dart';
-import 'package:logo_e_learning/controlls/provider_courses.dart';
+
 import 'package:provider/provider.dart';
 
 class Thirdapp extends StatelessWidget {

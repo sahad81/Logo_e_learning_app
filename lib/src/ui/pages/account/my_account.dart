@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:logo_e_learning/controllers/user_servieses.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
 import 'package:logo_e_learning/src/splash/splash_screen.dart';
-import 'package:logo_e_learning/controlls/user_servieses.dart';
+
 import 'package:logo_e_learning/src/ui/pages/account/feadback/account_provider.dart';
 import 'package:logo_e_learning/src/ui/pages/account/feadback/feadbackpage.dart';
 import 'package:logo_e_learning/src/ui/pages/account/personal_details/personal_details.dart';

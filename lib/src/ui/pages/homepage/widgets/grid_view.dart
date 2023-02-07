@@ -4,13 +4,16 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:logo_e_learning/controllers/cart_controller.dart';
+import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/provider_courses.dart';
 import 'package:logo_e_learning/src/const/colors.dart';
 import 'package:logo_e_learning/src/const/kwidgets.dart';
-import 'package:logo_e_learning/src/model/courses.dart';
-import 'package:logo_e_learning/controlls/provider_courses.dart';
+import 'package:logo_e_learning/src/model/courses_model.dart';
+
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
 import 'package:logo_e_learning/src/ui/pages/view_course/view_course.dart';
-import 'package:logo_e_learning/controlls/controller_vishllist.dart';
+
 import 'package:logo_e_learning/src/ui/pages/wish_list/wish_list_widget.dart';
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
@@ -79,12 +82,12 @@ class GridViewCard extends StatelessWidget {
                           : ListView.builder(
                               itemCount: context
                                   .read<ProviderCoursess>()
-                                  .courseNotifire
-                                  .value
+                                  .allCourse
+                                  
                                   .length,
                               itemBuilder: (context, index) {
                                 final values =
-                                    value.courseNotifire.value[index];
+                                    value.allCourse[index];
                                 log(values.modules.toString());
 
                                 return MAincard(
@@ -240,7 +243,7 @@ class MAincard extends StatelessWidget {
                                           ? value.AddToWishlist(id, context)
                                           : value.RemoveFromWishlist(
                                               id, context);
-                                      value.GetWishlist(context);
+                                 
                                     },
                                     icon: Icon(
                                       Icons.favorite,
@@ -253,7 +256,10 @@ class MAincard extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(right: 5),
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                     Provider.of<CartProvider>(context,listen: false).addtocart(id, context);
+
+                                      },
                                       icon: Icon(
                                         CupertinoIcons.shopping_cart,
                                         size: size1 * 0.030,

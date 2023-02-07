@@ -11,14 +11,14 @@ List<CouressModel> couressModelFromJson(String str) => List<CouressModel>.from(
 
 class CouressModel {
   CouressModel({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.imgName,
-    required this.price,
-    required this.teacher,
-    required this.modules,
-    required this.imgPath,
+     this.id,
+     this.title,
+     this.description,
+     this.imgName,
+     this.price,
+     this.teacher,
+     this.modules,
+     this.imgPath,
   });
 
   String? id;
