@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
 import 'package:logo_e_learning/controllers/controller_vishllist.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/grid_view.dart';
 

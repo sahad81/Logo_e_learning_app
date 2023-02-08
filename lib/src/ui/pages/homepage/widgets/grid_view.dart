@@ -4,11 +4,12 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
 import 'package:logo_e_learning/controllers/controller_vishllist.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/src/model/courses_model.dart';
 
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
@@ -97,7 +98,7 @@ class GridViewCard extends StatelessWidget {
                                   language: "english",
                                   teacher: values.teacher.toString(),
                                   img:
-                                      "http://10.0.2.2:3000/${values.imgPath.toString()}",
+                                      "http://$ipadressimg:3000/${values.imgPath.toString()}",
                                   price: values.price.toString(),
                                   offerprice: "500",
                                   rating: "4.4",
@@ -164,11 +165,11 @@ class MAincard extends StatelessWidget {
       child: Card(
         clipBehavior: Clip.hardEdge,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(18),
         ),
         child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(12)),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(18)),
               color: Colors.grey.shade300,
             ),
             child: Column(

@@ -8,12 +8,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
+import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/controllers/user_servieses.dart';
 
-import 'package:logo_e_learning/src/const/strings.dart';
 import 'package:logo_e_learning/src/model/getcart_model.dart';
-
-import 'package:logo_e_learning/src/model/wishlist_model.dart';
+import 'package:logo_e_learning/src/ui/pages/cartPage/cart_page.dart';
+import 'package:logo_e_learning/src/widgets/showdialogs.dart';
 
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
 
@@ -25,6 +25,17 @@ class CartProvider extends ChangeNotifier {
   bool get loading => _loading;
   bool get eroor => _error;
   List<CartModel> cartList = [];
+
+  double totalcartAmount() {
+    double amount = 0;
+    for (var i = 0; i < cartList[0].data!.length; i++) {
+      //   amount = amount + cartList[0].data![i].courseDetails![0].price;
+      amount = amount +
+          double.parse(cartList[0].data![i].courseDetails![0].price.toString());
+    }
+    // log(amount.toString());
+    return amount;
+  }
 
   bool checkinCart(id) {
     bool isinCart = false;
@@ -90,29 +101,32 @@ class CartProvider extends ChangeNotifier {
 
         final data = CartModel.fromJson(Response.data);
         cartList.add(data);
-        log(cartList.toString());
-
-        log(cartList.toString());
+   
         _loading = false;
+
         notifyListeners();
       }
     } on SocketException {
       _loading = false;
       _error = false;
       notifyListeners();
-      showSnackBar("No internet connection", Colors.red, context);
+    ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the internet");
     } on TimeoutException {
       _loading = false;
       _error = true;
       notifyListeners();
-      showSnackBar("No internet connection", Colors.red, context);
+      ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the internet");
     } on DioError catch (e) {
       _loading = false;
       _error = true;
       notifyListeners();
-      showSnackBar("No internet connection", Colors.red, context);
+     ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the internet");
     } catch (e) {
+      _loading=false;
+    _error=true;
+    notifyListeners();
       print(e.toString());
+        ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the interen");
     }
   }
 

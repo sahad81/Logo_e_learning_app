@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
+import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/src/widgets/cart_bn.dart';
 
 class curriculem extends StatelessWidget {

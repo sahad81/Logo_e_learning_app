@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
 import 'package:logo_e_learning/controllers/user_servieses.dart';
-import 'package:logo_e_learning/src/const/strings.dart';
+import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
 import 'package:logo_e_learning/src/model/login/login.dart';
 

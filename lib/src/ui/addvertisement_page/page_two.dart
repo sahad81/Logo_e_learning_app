@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/src/ui/addvertisement_page/page_three.dart';
 
 class Second_add extends StatefulWidget {

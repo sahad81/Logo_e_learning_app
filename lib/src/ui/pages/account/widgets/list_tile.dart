@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 
 class ListTileA extends StatelessWidget {
    ListTileA({super.key, required this.fn,required this.title});

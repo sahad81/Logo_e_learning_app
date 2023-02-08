@@ -11,7 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:logo_e_learning/controllers/user_servieses.dart';
 
 
-import 'package:logo_e_learning/src/const/strings.dart';
+import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/src/model/wishlist_model.dart';
 
 
@@ -56,9 +56,9 @@ class WishListP extends ChangeNotifier {
         GetWishlist(context);
       }
     } on SocketException {
-      showSnackBar("No internet connection", Colors.red, context);
+    //  showSnackBar("No internet connection", Colors.red, context);
     } on TimeoutException {
-      showSnackBar("No internet connection", Colors.red, context);
+    //  showSnackBar("No internet connection", Colors.red, context);
 
     } on DioError catch (e) {
       if (e.response == null) {

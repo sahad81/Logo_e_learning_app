@@ -55,7 +55,7 @@ class CourseDetail {
          this.title,
          this.description,
          this.imgName,
-         this.price,
+   required     this.price,
          this.teacher,
        
          this.imgPath,

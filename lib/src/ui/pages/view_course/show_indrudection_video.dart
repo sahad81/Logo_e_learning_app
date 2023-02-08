@@ -4,8 +4,8 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/strings.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/strings.dart';
 import 'package:validators/validators.dart';
 import 'package:video_player/video_player.dart';
 

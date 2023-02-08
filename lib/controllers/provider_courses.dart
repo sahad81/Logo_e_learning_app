@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/cupertino.dart';
-import 'package:logo_e_learning/src/const/strings.dart';
+import 'package:logo_e_learning/const/strings.dart';
+
 
 import 'package:logo_e_learning/src/model/courses_model.dart';
 import 'package:logo_e_learning/src/widgets/snackbar.dart';
@@ -39,7 +40,7 @@ class ProviderCoursess with ChangeNotifier {
           .get(
            Uri.parse( '$BaseUrl/user/getCourses/:index',)
           )
-          .timeout(const Duration(seconds: 10));
+          .timeout(const Duration(seconds: 20));
 //======== statusCode chacking============================================//
       if (response.statusCode == 200) {
         log("success");

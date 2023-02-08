@@ -2,8 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/src/ui/pages/learnings/parchased_course/parcahsed_courses.dart';
 import 'package:logo_e_learning/src/widgets/cart_bn.dart';
 

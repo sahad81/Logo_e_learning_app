@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/src/ui/entry/login_page.dart';
 import 'package:logo_e_learning/src/ui/entry/signup_page.dart';
 

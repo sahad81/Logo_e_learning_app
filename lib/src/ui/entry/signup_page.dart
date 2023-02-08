@@ -4,8 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iconforest_flutter_cmoon_icons/flutter_cmoon_icons.dart';
 import 'package:logo_e_learning/controllers/provider_authentication.dart';
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/src/ui/entry/login_page.dart';
 
 import 'package:provider/provider.dart';

@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/controllers/controller_vishllist.dart';
 
-import 'package:logo_e_learning/src/const/colors.dart';
-import 'package:logo_e_learning/src/const/kwidgets.dart';
+import 'package:logo_e_learning/const/colors.dart';
+import 'package:logo_e_learning/const/kwidgets.dart';
 
 import 'package:logo_e_learning/src/model/wishlist_model.dart';
 import 'package:logo_e_learning/src/ui/pages/homepage/widgets/rating_stars.dart';
@@ -43,7 +44,8 @@ class Wishlist extends StatelessWidget {
                   Datum data = values.data[index];
 
                   return SizedBox(
-                    height: size1 * 0.18,
+                    height: size1*0.19,
+                    //size1 *data.courseDetails![0].title!.characters.length/200,
                     child: Card(
                       child: ListTile(
                         subtitle: Column(
@@ -59,7 +61,7 @@ class Wishlist extends StatelessWidget {
                                     text: "3  ",
                                     color: kblack,
                                     size: size1 * 0.0145),
-                                const Stars(),
+                                 Stars(),
                               ],
                             ),
                             Row(children: [
@@ -94,10 +96,10 @@ class Wishlist extends StatelessWidget {
                             color: kblack,
                             size: size1 * 0.0175),
                         leading: Image(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: MediaQuery.of(context).size.height * 0.2,
+                            width: MediaQuery.of(context).size.width * 0.20,
+//height: MediaQuery.of(context).size.height * 0.2,
                             image: NetworkImage(
-                              "http://10.0.2.2:3000/${data.courseDetails![0].imgPath.toString()}",
+                              "http://$ipadressimg:3000/${data.courseDetails![0].imgPath.toString()}",
                             )),
                       ),
                     ),
