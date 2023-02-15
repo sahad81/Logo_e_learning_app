@@ -1,4 +1,6 @@
 
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +33,8 @@ class Ktext extends StatelessWidget {
     );
   }
 }
-Widget kheight15 =SizedBox(height: 15);
-Widget kheight30 =SizedBox(height: 30);
+Widget kheight15 =const SizedBox(height: 15);
+Widget kheight30 =const SizedBox(height: 30);
 
 
 
@@ -46,7 +48,7 @@ final String titile;
   @override
   Widget build(BuildContext context) {
     return    Padding(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         
         width: MediaQuery.of(context).size.width,

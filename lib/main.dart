@@ -3,12 +3,12 @@ import 'package:logo_e_learning/controllers/cart_controller.dart';
 import 'package:logo_e_learning/controllers/controller_vishllist.dart';
 import 'package:logo_e_learning/controllers/provider_authentication.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
-import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
-import 'package:logo_e_learning/src/splash/splash_screen.dart';
-import 'package:logo_e_learning/src/ui/addvertisement_page/page_three.dart';
-import 'package:logo_e_learning/src/ui/entry/login_page.dart';
+import 'package:logo_e_learning/controllers/user_details.dart';
 
-import 'package:logo_e_learning/src/ui/pages/account/feadback/account_provider.dart';
+import 'package:logo_e_learning/view/splash/splash_screen.dart';
+
+
+import 'package:logo_e_learning/controllers/feadback_provider.dart';
 
 import 'package:provider/provider.dart';
 
@@ -29,8 +29,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => Authentication()),
           ChangeNotifierProvider(create: (context) => ProviderCoursess()),
           ChangeNotifierProvider(create: (context) => WishListP()),
-          ChangeNotifierProvider(create: (context) => CartProvider())
-        ],
+          ChangeNotifierProvider(create: (context) => CartProvider()),
+          ChangeNotifierProvider(create: (context) => UserDetails(),)
+                  ],
         child: MaterialApp(
           title: 'Space Class',
           theme: ThemeData(

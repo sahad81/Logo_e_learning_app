@@ -8,14 +8,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
-import 'package:logo_e_learning/controllers/user_servieses.dart';
+import 'package:logo_e_learning/controllers/shared_prefs_servieses.dart';
 
 
 import 'package:logo_e_learning/const/strings.dart';
-import 'package:logo_e_learning/src/model/wishlist_model.dart';
 
+import 'package:logo_e_learning/const/widgets/snackbar.dart';
 
-import 'package:logo_e_learning/src/widgets/snackbar.dart';
+import '../model/wishlist_model.dart';
 
 class WishListP extends ChangeNotifier {
   bool _error = false;
@@ -42,7 +42,7 @@ class WishListP extends ChangeNotifier {
 //===============================================addTowishlist====================================\\
   AddToWishlist(String id, context) async {
     try {
-      final tocken = await UserServieces.getToken();
+        final tocken = await UserServieces.getToken();
 
       final response = await Dio().post(
         "$BaseUrl/user/addToWishlist",
@@ -84,7 +84,7 @@ class WishListP extends ChangeNotifier {
       final Response = await dio.get("$BaseUrl/user/getWishlists",
           options: Options(headers: {
             "Authorization": tocken,
-          }));
+          })).  timeout(const Duration(seconds: 20));
           log(Response.statusCode.toString());
       if (Response.statusCode == 200 || Response.statusCode == 201) {
         WishlistG.clear();
@@ -92,7 +92,7 @@ class WishListP extends ChangeNotifier {
         final data = WishlistModel.fromJson(Response.data);
         WishlistG.add(data);
         datas.addAll(data.data);
-      
+      _loading=false;
         notifyListeners();
     log(WishlistG.toString());
         _loading = false;
@@ -115,6 +115,8 @@ class WishListP extends ChangeNotifier {
       showSnackBar("No internet connection", Colors.red, context);
     }
     catch (e){
+      _loading=false;
+      _error=true;
       log(e.toString());
     }
   }

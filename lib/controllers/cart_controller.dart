@@ -9,13 +9,15 @@ import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
 import 'package:logo_e_learning/const/strings.dart';
-import 'package:logo_e_learning/controllers/user_servieses.dart';
+import 'package:logo_e_learning/controllers/shared_prefs_servieses.dart';
 
-import 'package:logo_e_learning/src/model/getcart_model.dart';
-import 'package:logo_e_learning/src/ui/pages/cartPage/cart_page.dart';
-import 'package:logo_e_learning/src/widgets/showdialogs.dart';
 
-import 'package:logo_e_learning/src/widgets/snackbar.dart';
+import 'package:logo_e_learning/view/cartPage/cart_page.dart';
+import 'package:logo_e_learning/const/widgets/showdialogs.dart';
+
+import 'package:logo_e_learning/const/widgets/snackbar.dart';
+
+import '../model/getcart_model.dart';
 
 class CartProvider extends ChangeNotifier {
   bool _error = false;
@@ -39,9 +41,9 @@ class CartProvider extends ChangeNotifier {
 
   bool checkinCart(id) {
     bool isinCart = false;
-    log(cartList.length.toString());
+    log(cartList[0].data!.length.toString());
     for (int i = 0; i < cartList[0].data!.length; i++) {
-      if (cartList[0].data![i].courses == id) {
+      if (cartList[0].data![i].courseDetails![0].id == id) {
         isinCart = true;
         log(isinCart.toString());
       }

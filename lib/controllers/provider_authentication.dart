@@ -1,29 +1,22 @@
+// ignore_for_file: non_constant_identifier_names, no_leading_underscores_for_local_identifiers
 import 'dart:async';
-
 import 'dart:developer';
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
-import 'package:logo_e_learning/controllers/provider_courses.dart';
-import 'package:logo_e_learning/controllers/user_servieses.dart';
-import 'package:logo_e_learning/const/strings.dart';
-import 'package:logo_e_learning/src/mainpage/screen_main_page.dart';
-import 'package:logo_e_learning/src/model/login/login.dart';
 
+import 'package:logo_e_learning/servies/login_servieces.dart';
+import 'package:logo_e_learning/view/mainpage/screen_main_page.dart';
 
-import 'package:logo_e_learning/src/widgets/snackbar.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validators/validators.dart';
-import 'package:http/http.dart' as http;
+
+import '../view/Authentication/login_page.dart';
 
 class Authentication extends ChangeNotifier {
-  bool passwordishiden = false;
-  bool passwordishideniSignup = false;
-  bool email_is_valid = false;
-
+  bool passwordishiden = true;
+  bool passwordishideniSignup = true;
+  bool email_is_valid = true;
+  String? email;
   Map<String, dynamic>? _userDetails;
 
   Map<String, dynamic> get userDetails {
@@ -32,68 +25,19 @@ class Authentication extends ChangeNotifier {
 
   TextEditingController email_controler = TextEditingController();
   TextEditingController password_controller = TextEditingController();
+
+  //-------------userlogin-------------------->
   Future loginpostfunction(
     context,
   ) async {
-    try {
-      final response = await Dio().post(
-        "$BaseUrl/user/login",
-        data: LoginModel(
-                email: email_controler.text, password: password_controller.text)
-            .toJson(),
-        options: Options(
-          headers: <String, String>{
-            "Content-Type": "application/json",
-          },
-        ),
-      );
-      if (response.statusCode == 200) {
-        showSnackBar("Login Successfully completed", Colors.green, context);
-        log("seccess");
-        UserServieces().storeUserDetails(response.data);
+    await LoginServices().loginpostfunction(
+        email_controler.text, password_controller.text, context);
 
-        email_controler.clear();
-        password_controller.clear();
-
-        Provider.of<ProviderCoursess>(context,listen: false).GetAllCourses(context);
-        notifyListeners();
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => Screenmainpage()));
-      }
-    } on SocketException {
-      showDialog(
-        context: context,
-        builder: (context) => const Center(
-            child: AlertDialog(
-          content: Text('No internet connection'),
-        )),
-      );
-
-      //Handling timeout error---------->
-
-    } on TimeoutException {
-      showDialog(
-        context: context,
-        builder: (context) => const Center(
-          child: AlertDialog(
-            content: Text('some server issues'),
-          ),
-        ),
-      );
-    } on DioError catch (e) {
-      if (e.response == null) {
-        showSnackBar(
-            "server problem please try again later", Colors.red, context);
-      } else if (e.response!.statusCode == 554) {
-        showSnackBar("User not found", Colors.red, context);
-      } else if (e.response!.statusCode == 403) {
-        showSnackBar("Wrong Password", Colors.red, context);
-      }
-    } catch (e) {
-      showSnackBar(e.toString(), Colors.red, context);
-    }
+    email_controler.clear();
+    password_controller.clear();
   }
 
+//---- passwords show and hide---------------->
   togglepasswordviewlogin() {
     passwordishiden = !passwordishiden;
     notifyListeners();
@@ -104,22 +48,41 @@ class Authentication extends ChangeNotifier {
     notifyListeners();
   }
 
+//--------------email checking---------------->
   void ismailisValid(value) {
     email_is_valid = isEmail(value);
     notifyListeners();
   }
 
-  changescreen(context) async {
+//------------checking user or not------------>
+  getdata(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final bool? result = prefs.getBool('isLoggedIn');
-    Future.delayed(const Duration(seconds: 3)).whenComplete(
-      () => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-            // ignore: unrelated_type_equality_checks
-            builder: (context) {
-          return Screenmainpage();
-        }),
-      ),
-    );
+    bool? _b = prefs.getBool("isLoggedIn");
+
+    if (_b == true) {
+      getimail();
+      log("uers");
+      Future.delayed(const Duration(seconds: 2)).whenComplete(
+        () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) {
+            return Screenmainpage();
+          }),
+        ),
+      );
+    } else {
+      log("not a user");
+      Future.delayed(const Duration(seconds: 2)).whenComplete(
+        () => Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) {
+            return LoginPage();
+          }),
+        ),
+      );
+    }
+  }
+
+  getimail() async {
+    final prefs = await SharedPreferences.getInstance();
+    email = prefs.getString('email');
   }
 }
