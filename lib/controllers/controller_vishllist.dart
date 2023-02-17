@@ -1,20 +1,14 @@
 // ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names, unused_catch_clause, unused_field, prefer_final_fields
 
 import 'dart:async';
-
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'package:dio/dio.dart';
 import 'package:logo_e_learning/controllers/shared_prefs_servieses.dart';
-
-
 import 'package:logo_e_learning/const/strings.dart';
-
 import 'package:logo_e_learning/const/widgets/snackbar.dart';
-
+import 'package:logo_e_learning/servies/wishlist_servieces.dart';
 import '../model/wishlist_model.dart';
 
 class WishListP extends ChangeNotifier {
@@ -25,131 +19,45 @@ class WishListP extends ChangeNotifier {
   bool get loading => _loading;
   bool get eroor => _error;
   List<WishlistModel> WishlistG = [];
-  List<Datum> datas = [];
+
+//-------------------------checking coures in wishlist or not in wishlist-------------------->
   bool checkifinWishlistorNot(id) {
     bool inwishlist = false;
-
     for (int i = 0; i < WishlistG[0].data.length; i++) {
       if (WishlistG[0].data[i].courses == id) {
         inwishlist = true;
-       
       }
     }
-
     return inwishlist;
-  }
-
-//===============================================addTowishlist====================================\\
-  AddToWishlist(String id, context) async {
-    try {
-        final tocken = await UserServieces.getToken();
-
-      final response = await Dio().post(
-        "$BaseUrl/user/addToWishlist",
-        data: {"courseId": id},
-        options: Options(
-          headers: {"Authorization": tocken},
-        ),
-      ); //
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        showSnackBar("Successfully added to Wishlist", Colors.green, context);
-        GetWishlist(context);
-      }
-    } on SocketException {
-    //  showSnackBar("No internet connection", Colors.red, context);
-    } on TimeoutException {
-    //  showSnackBar("No internet connection", Colors.red, context);
-
-    } on DioError catch (e) {
-      if (e.response == null) {
-     log(" no internet ");
-      } else if (e.response!.statusCode == 400) {
-        showSnackBar("course already exist", Colors.red, context);
-      }
-    } catch (e) {
-      log(e.toString());
-    }
   }
   //======================================getingWishlist=====================================\\
 
   GetWishlist(context) async {
-    _loading = true;
+    _loading = true;  
     _error = false;
-    notifyListeners();
+    WishlistG.clear();
 
-    try {
-      Dio dio = Dio();
-      final tocken = await UserServieces.getToken();
-
-      final Response = await dio.get("$BaseUrl/user/getWishlists",
-          options: Options(headers: {
-            "Authorization": tocken,
-          })).  timeout(const Duration(seconds: 20));
-          log(Response.statusCode.toString());
-      if (Response.statusCode == 200 || Response.statusCode == 201) {
-        WishlistG.clear();
-        datas.clear();
-        final data = WishlistModel.fromJson(Response.data);
-        WishlistG.add(data);
-        datas.addAll(data.data);
-      _loading=false;
-        notifyListeners();
-    log(WishlistG.toString());
-        _loading = false;
-        notifyListeners();
-      }
-    } on SocketException {
-      _loading = false;
-      _error = false;
-      notifyListeners();
-      showSnackBar("No internet connection", Colors.red, context);
-    } on TimeoutException {
-      _loading = false;
+    final data = await WishlistServieces().GetWishlists(context);
+    if (data == null) {
+      _loading = true;
       _error = true;
       notifyListeners();
-      showSnackBar("No internet connection", Colors.red, context);
-    } on DioError catch (e) {
+    } else {
+      WishlistG.add(data);
       _loading = false;
-      _error = true;
       notifyListeners();
-      showSnackBar("No internet connection", Colors.red, context);
     }
-    catch (e){
-      _loading=false;
-      _error=true;
-      log(e.toString());
-    }
+  }
+
+//===============================================addTowishlist====================================\\
+  AddToWishlist(String id, context) async {
+    await WishlistServieces().AddToWishlist(id, context);
+    GetWishlist(context);
   }
 
 //-----------------------------------------remove from wishlist=========================================\\
   void RemoveFromWishlist(String id, context) async {
-    try {
-      final tocken = await UserServieces.getToken();
-
-      final response = await Dio().delete(
-        "$BaseUrl/user/removeFromWishlist/$id",
-        options: Options(
-          headers: {"Authorization": tocken},
-        ),
-      ); //
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        showSnackBar(
-            "Successfully Removed from Wishlist", Colors.green, context);
-
-        GetWishlist(context);
-      }
-    } on SocketException {
-      showSnackBar("No internet connection", Colors.red, context);
-    } on TimeoutException {
-      showSnackBar("No internet connection", Colors.red, context);
-    } on DioError catch (e) {
-      if (e.response == null) {
-     log("no internet");
-      } else if (e.response!.statusCode == 400) {
-        showSnackBar("course already Removed", Colors.red, context);
-      }
-    } catch (e) {
-      print(e.toString());
-    }
+    WishlistServieces().RemoveFromWishlist(id, context);
+    GetWishlist(context);
   }
 }

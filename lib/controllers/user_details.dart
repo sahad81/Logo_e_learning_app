@@ -15,76 +15,63 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDetails extends ChangeNotifier {
   List<UserDetailsModel> userDetatailss = [];
-   bool _error = false;
+  bool _error = false;
   bool _loading = false;
-  String _errorMessage = '';
-  bool allfnloading=false;
-  bool errorforallfn=false;
+
+  bool allfnloading = false;
+  bool errorforallfn = false;
 
   bool get loading => _loading;
   bool get eroor => _error;
   Future<void> getUserDetails() async {
     try {
-      _loading=true;
+      _loading = true;
       notifyListeners();
       final tocken = await UserServieces.getToken();
 
-      final Response = await Dio().get("$BaseUrl/user/userProfile",
+      final response = await Dio().get("$BaseUrl/user/userProfile",
           options: Options(
             headers: {"Authorization": tocken},
           ));
-      if (Response.statusCode == 200 || Response.statusCode == 201) {
-   
-        
-        print(userDetatailss);
-      
-        _loading=false;
-        
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        _loading = false;
       }
     } on SocketException {
-      print("eroor inernet");
+     
 
-       _loading = false;
-       _error = true;
-       notifyListeners();
+      _loading = false;
+      _error = true;
+      notifyListeners();
     } on TimeoutException {
-     _loading = false;
-       _error = true;
-       notifyListeners();
-      print("eroor=timeout");
+      _loading = false;
+      _error = true;
+      notifyListeners();
+ //     print("eroor=timeout");
     } on DioError catch (e) {
-       _loading = false;
-       _error = true;
-       notifyListeners();
-      print("eroor$e");
+      _loading = false;
+      _error = true;
+      notifyListeners();
+   //   print("eroor$e");
     } catch (e) {
-       _loading = false;
-       _error = true;
-       notifyListeners();
+      _loading = false;
+      _error = true;
+      notifyListeners();
       print("$e.eroor");
     }
   }
 
-
-
-
-
-
-
-
-initfuntions(context)async{
-  allfnloading=true;
-  notifyListeners();
-           SharedPreferences prefs = await SharedPreferences.getInstance();
+  initfuntions(context) async {
+    allfnloading = true;
+    notifyListeners();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? b = prefs.getBool("'userdatageted");
 
-      if (b==true&&Provider.of<WishListP>(context).WishlistG.isEmpty) {
-        log("sett");
-      } else {
+    if (b == true && Provider.of<WishListP>(context).WishlistG.isEmpty) {
+      log("sett");
+    } else {
       getUserDetails();
-   //   initfuntions();
-        notifyListeners();
-      }
-}
-
+      //   initfuntions();
+      notifyListeners();
+    }
+  }
 }

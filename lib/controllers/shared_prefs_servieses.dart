@@ -37,6 +37,7 @@ class UserServieces {
       builder: (context) => const SplashScreen(),
     ));
   }
+
 // ----------------sstoring email from login and signup page--------------------->
   static Future emailsever(String email) async {
     final prefs = await SharedPreferences.getInstance();

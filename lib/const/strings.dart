@@ -5,11 +5,8 @@
 const BaseUrl="http://$phoneiPA:3000";
 const ipadressimg=phoneiPA;
 const emuleteripA="10.0.2.2";
-const phoneiPA="192.168.68.96";
+const phoneiPA="192.168.181.96";
 const feadbackUrl = "https://api.emailjs.com/api/v1.0/email/send";
 
 
 
-List<String> categoireslist=[
-  "dart","flutter""mathamatics""bussiness""Ui Development""node js"
-];

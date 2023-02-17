@@ -13,11 +13,13 @@ import 'package:provider/provider.dart';
 import '../../const/strings.dart';
 
 class CategoryPage extends StatelessWidget {
-  const CategoryPage({super.key, required this.category});
-  final String category;
+  static String routName = "/categorypage";
+  const CategoryPage({super.key, this.category});
+  final String? category;
+
   @override
-   Widget build(BuildContext context) {
-    final valup=Provider.of<ProviderCoursess>(context,listen: false);
+  Widget build(BuildContext context) {
+    final valup = Provider.of<ProviderCoursess>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -37,86 +39,120 @@ class CategoryPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Ktext(text: category, color: kblack, size: 24),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Ktext(text: category!, color: kblack, size: 26,weight: FontWeight.bold,),
+                    SizedBox(height: 10,),
+                    Ktext(text: "Courses to get you started", color: kblack, size: 22),
+                  ],
+                ),
+              ),
               Consumer<ProviderCoursess>(builder: (context, value, child) {
-                
                 return ListView.separated(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      
-                         
-                     
-                 //  valup.filter();
+                      //  valup.filter();
 
                       return InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ViewCourses(
-                                titile: value.categoryselectedlist[index].title.toString(),
+                                titile: value.categoryselectedlist[index].title
+                                    .toString(),
                                 imagepath:
-                                    "http://$ipadressimg:3000/${ value.categoryselectedlist[index].imgPath.toString()}",
+                                    "http://$ipadressimg:3000/${value.categoryselectedlist[index].imgPath.toString()}",
                                 rating: "5",
                                 ratingCount: "599",
-                                discription:  value.categoryselectedlist[index].description.toString(),
+                                discription: value
+                                    .categoryselectedlist[index].description
+                                    .toString(),
                                 language: "english",
-                                teacher:  value.categoryselectedlist[index].teacher.toString(),
-                                price:  value.categoryselectedlist[index].price.toString(),
+                                teacher: value
+                                    .categoryselectedlist[index].teacher
+                                    .toString(),
+                                price: value.categoryselectedlist[index].price
+                                    .toString(),
                                 offerprice: "5000",
-                                indrudectionVedio:  value.categoryselectedlist[index].modules!,
-                                id:  value.categoryselectedlist[index].id.toString()),
+                                indrudectionVedio:
+                                    value.categoryselectedlist[index].modules!,
+                                id: value.categoryselectedlist[index].id
+                                    .toString()),
                           ));
                         },
-                        child: ListTile(
-                          leading: Container(
-                              width: 35,
-                              height: 35,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                      "http://$ipadressimg:3000/${ value.categoryselectedlist[index].imgPath.toString()}",
-                                    ),
-                                    fit: BoxFit.cover),
-                              )),
-                          title: Ktext(
-                              text:  value.categoryselectedlist[index].title.toString(),
-                              color: kblack,
-                              size: 16,
-                              weight: FontWeight.bold),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Ktext(
-                                  text:  value.categoryselectedlist[index].teacher.toString(),
-                                  color: Colors.grey,
-                                  size: 16),
-                              Row(
-                                children: const [
-                                  Text('4.4'),
-                                  SizedBox(width: 3),
-                                  Stars(),
-                                  Ktext(
-                                      text: "(400)",
-                                      color: Colors.grey,
-                                      size: 12),
-                                ],
-                              ),
-                              Ktext(
-                                text: "5000",
+                        child: InkWell(
+                          onTap: () {
+                            final v=value.categoryselectedlist[index];
+                                        Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ViewCourses(
+                            titile: v.title.toString(),
+                            imagepath:
+                                "http://$ipadressimg:3000/${v.imgPath.toString()}",
+                            rating: "4.5",
+                            ratingCount: "569",
+                            discription: v.description.toString(),
+                            language: "malayalam",
+                            teacher: v.teacher.toString(),
+                            price: v.price.toString(),
+                            offerprice: "599",
+                            indrudectionVedio: v.modules!,
+                            id: v.id.toString()),
+                      ));
+                          },
+                          child: ListTile(
+                            leading: Container(
+                                width: 35,
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        "http://$ipadressimg:3000/${value.categoryselectedlist[index].imgPath.toString()}",
+                                      ),
+                                      fit: BoxFit.cover),
+                                )),
+                            title: Ktext(
+                                text: value.categoryselectedlist[index].title
+                                    .toString(),
                                 color: kblack,
-                                size: 15,
-                                weight: FontWeight.bold,
-                              )
-                            ],
+                                size: 16,
+                                weight: FontWeight.bold),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Ktext(
+                                    text: value
+                                        .categoryselectedlist[index].teacher
+                                        .toString(),
+                                    color: Colors.grey,
+                                    size: 16),
+                                Row(
+                                  children: const [
+                                    Text('4.4'),
+                                    SizedBox(width: 3),
+                                    Stars(),
+                                    Ktext(
+                                        text: "(400)",
+                                        color: Colors.grey,
+                                        size: 12),
+                                  ],
+                                ),
+                                Ktext(
+                                  text: "5000",
+                                  color: kblack,
+                                  size: 15,
+                                  weight: FontWeight.bold,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
                     },
                     separatorBuilder: (context, index) => Divider(),
-                    itemCount:
-                  
-                    value.categoryselectedlist.length
-                     );
+                    itemCount: value.categoryselectedlist.length);
               })
             ],
           ),

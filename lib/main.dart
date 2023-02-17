@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
 import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/payment_controller.dart';
 import 'package:logo_e_learning/controllers/provider_authentication.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
 import 'package:logo_e_learning/controllers/user_details.dart';
+import 'package:logo_e_learning/view/homepage/categorie_view_page.dart';
 
 import 'package:logo_e_learning/view/splash/splash_screen.dart';
 
@@ -30,7 +32,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => ProviderCoursess()),
           ChangeNotifierProvider(create: (context) => WishListP()),
           ChangeNotifierProvider(create: (context) => CartProvider()),
-          ChangeNotifierProvider(create: (context) => UserDetails(),)
+          ChangeNotifierProvider(create: (context) => UserDetails(),),
+                    ChangeNotifierProvider(create: (context) => PaymentProvider(),)
                   ],
         child: MaterialApp(
           title: 'Space Class',
@@ -39,6 +42,9 @@ class MyApp extends StatelessWidget {
           ),
           home: SplashScreen(),
           debugShowCheckedModeBanner: false,
+          routes: <String,WidgetBuilder>{
+         CategoryPage.routName:(context) => CategoryPage()
+          },
         ));
   }
 }

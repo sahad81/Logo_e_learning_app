@@ -17,7 +17,8 @@ class CartModel {
 
   factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
         status: json["status"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<Datum>.from(json["data"]
+        .map((x) => Datum.fromJson(x))),
       );
 }
 
@@ -42,7 +43,9 @@ class Datum {
         courses: Courses.fromJson(json["courses"]),
         v: json["__v"],
         courseDetails: List<CourseDetail>.from(
-            json["course_details"].map((x) => CourseDetail.fromJson(x))),
+            json["course_details"]
+            ==null?[]:
+             json["course_details"] .map((x) => CourseDetail.fromJson(x))),
       );
 }
 

@@ -6,7 +6,11 @@ import 'dart:convert';
 
 List<CouressModel> couressModelFromJson(String str) => List<CouressModel>.from(
     json.decode(str).map((x) => CouressModel.fromJson(x)));
-
+mapToString(Map<String, dynamic> map) {
+  jsonEncode(map);
+  CouressModel WislistAndCartFromJson(String str) =>
+      CouressModel.fromJson(json.decode(str));
+}
 
 
 class CouressModel {

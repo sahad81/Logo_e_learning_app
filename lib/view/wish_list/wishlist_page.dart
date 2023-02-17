@@ -20,8 +20,6 @@ class Wishlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(microseconds: 3)).then((value) =>
-        Provider.of<WishListP>(context, listen: false).GetWishlist(context));
     final sizew = MediaQuery.of(context).size.width;
     final sizeh = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -37,42 +35,43 @@ class Wishlist extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(child: Consumer<WishListP>(builder: (context, value, child) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 7),
-              child: value.WishlistG[0].data.isEmpty
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SizedBox(
-                          height: sizeh * 0.18,
-                        ),
-                        SvgPicture.asset(
-                          "assets/undraw_wishlist_re_m7tv.svg",
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.16,
-                        ),
-                        SizedBox(
-                          height: sizeh * 0.027,
-                        ),
-                        const Ktext(
-                          text: "Want to save Something fot later?",
-                          color: Colors.grey,
-                          size: 17,
-                          textalie: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: sizeh * 0.027,
-                        ),
-                        const Ktext(
-                          text: "your wishlist will go here ",
-                          color: Colors.grey,
-                          size: 17,
-                          textalie: TextAlign.center,
-                        ),
-                      ],
-                    )
-                  : ListView.separated(
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 7),
+            child: Provider.of<WishListP>(context).WishlistG[0].data.isEmpty
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(
+                        height: sizeh * 0.18,
+                      ),
+                      SvgPicture.asset(
+                        "assets/undraw_wishlist_re_m7tv.svg",
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.16,
+                      ),
+                      SizedBox(
+                        height: sizeh * 0.027,
+                      ),
+                      const Ktext(
+                        text: "Want to save Something fot later?",
+                        color: Colors.grey,
+                        size: 17,
+                        textalie: TextAlign.center,
+                      ),
+                      SizedBox(
+                        height: sizeh * 0.027,
+                      ),
+                      const Ktext(
+                        text: "your wishlist will go here ",
+                        color: Colors.grey,
+                        size: 17,
+                        textalie: TextAlign.center,
+                      ),
+                    ],
+                  )
+                : Consumer<WishListP>(builder: (context, value, child) {
+                    return ListView.separated(
                       itemBuilder: (context, index) {
                         WishlistModel values = value.WishlistG[0];
                         Datum data = values.data[index];
@@ -108,12 +107,13 @@ class Wishlist extends StatelessWidget {
                                     ' ₹600',
                                     style: TextStyle(
                                         fontSize: sizeh * 0.0165,
-                                        decoration:
-                                            TextDecoration.lineThrough,
+                                        decoration: TextDecoration.lineThrough,
                                         color: Colors.grey),
                                   ),
                                 ]),
-                                SizedBox(height: sizeh*0.01,)
+                                SizedBox(
+                                  height: sizeh * 0.01,
+                                )
                               ],
                             ),
                             trailing: IconButton(
@@ -121,8 +121,8 @@ class Wishlist extends StatelessWidget {
                                   value.RemoveFromWishlist(
                                       data.courseDetails![0].id.toString(),
                                       context);
-                                  log("clicked");
-                                  value.GetWishlist(context);
+
+                                  //     value.GetWishlist(context);
                                 },
                                 icon: const Icon(Icons.delete)),
                             title: Ktext(
@@ -130,9 +130,7 @@ class Wishlist extends StatelessWidget {
                                 color: kblack,
                                 size: sizeh * 0.0175),
                             leading: Image(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.20,
-//height: MediaQuery.of(context).size.height * 0.2,
+                                width: MediaQuery.of(context).size.width * 0.20,
                                 image: NetworkImage(
                                   "http://$ipadressimg:3000/${data.courseDetails![0].imgPath.toString()}",
                                 )),
@@ -140,10 +138,10 @@ class Wishlist extends StatelessWidget {
                         );
                       },
                       separatorBuilder: (context, indez) => const SizedBox(),
-                      itemCount: value.datas.length,
-                    ),
-            );
-          }))
+                      itemCount: value.WishlistG[0].data.length,
+                    );
+                  }),
+          ))
         ],
       ),
     );

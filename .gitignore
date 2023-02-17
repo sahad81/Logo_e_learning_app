@@ -42,3 +42,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+
+#paymentkey 
+RazorPay="rzp_test_e8HTosic93ZLDX"

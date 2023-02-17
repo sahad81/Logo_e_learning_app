@@ -12,7 +12,7 @@ class CartBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(onPressed: (){
-      Provider.of<CartProvider>(context,listen: false).GetCartslist(context);
+       Provider.of<CartProvider>(context,listen: false).GetCartslist(context);
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const CartPage(),));
 
     }, icon: Icon(CupertinoIcons.cart,color: kblack,));

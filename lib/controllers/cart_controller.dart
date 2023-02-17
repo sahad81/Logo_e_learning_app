@@ -1,22 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names, unused_catch_clause, unused_field, prefer_final_fields, avoid_print
-
-import 'dart:async';
-
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-
-import 'package:dio/dio.dart';
-import 'package:logo_e_learning/const/strings.dart';
-import 'package:logo_e_learning/controllers/shared_prefs_servieses.dart';
-
-
-import 'package:logo_e_learning/view/cartPage/cart_page.dart';
-import 'package:logo_e_learning/const/widgets/showdialogs.dart';
-
-import 'package:logo_e_learning/const/widgets/snackbar.dart';
-
+import 'package:logo_e_learning/servies/cart_servieces.dart';
 import '../model/getcart_model.dart';
 
 class CartProvider extends ChangeNotifier {
@@ -28,17 +13,19 @@ class CartProvider extends ChangeNotifier {
   bool get eroor => _error;
   List<CartModel> cartList = [];
 
+
+//-----------------------cart amount------------------->
   double totalcartAmount() {
     double amount = 0;
     for (var i = 0; i < cartList[0].data!.length; i++) {
-      //   amount = amount + cartList[0].data![i].courseDetails![0].price;
       amount = amount +
           double.parse(cartList[0].data![i].courseDetails![0].price.toString());
     }
-    // log(amount.toString());
     return amount;
   }
 
+
+//---------------------------------checking item is in cart or not------------------------------//
   bool checkinCart(id) {
     bool isinCart = false;
     log(cartList[0].data!.length.toString());
@@ -48,119 +35,42 @@ class CartProvider extends ChangeNotifier {
         log(isinCart.toString());
       }
     }
-
     return isinCart;
   }
 
-//===============================================add to cart====================================\\
-  addtocart(String id, context) async {
-    try {
-      final tocken = await UserServieces.getToken();
 
-      final response = await Dio().post(
-        "$BaseUrl/user/addToCart",
-        data: {"courseId": id},
-        options: Options(
-          headers: {"Authorization": tocken},
-        ),
-      ); //
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        showSnackBar("Successfully added to Cart", Colors.green, context);
-        GetCartslist(context);
-      }
-    } on SocketException {
-      showSnackBar("No internet connection", Colors.red, context);
-    } on TimeoutException {
-      showSnackBar("No internet connection", Colors.red, context);
-    } on DioError catch (e) {
-      if (e.response == null) {
-        log(" no internet ");
-      } else if (e.response!.statusCode == 400) {
-        showSnackBar("course already exist in Cart", Colors.red, context);
-      }
-    } catch (e) {
-      log(e.toString());
-    }
-  }
-  //======================================get cartsList=====================================\\
-
+//---------------------------------------Get cartlist------------------------>
   GetCartslist(context) async {
-    _loading = true;
+      _loading = true;
     _error = false;
+   cartList.clear();
     notifyListeners();
-
-    try {
-      Dio dio = Dio();
-      final tocken = await UserServieces.getToken();
-
-      final Response = await dio.get("$BaseUrl/user/getCart",
-          options: Options(headers: {
-            "Authorization": tocken,
-          }));
-      log(Response.statusCode.toString());
-      if (Response.statusCode == 200 || Response.statusCode == 201) {
-        cartList.clear();
-
-        final data = CartModel.fromJson(Response.data);
-        cartList.add(data);
+    final data = await CartServieces().GetCartServieces(context);
+    // log(data);
    
-        _loading = false;
-
-        notifyListeners();
-      }
-    } on SocketException {
-      _loading = false;
-      _error = false;
-      notifyListeners();
-    ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the internet");
-    } on TimeoutException {
+    if (data == null) {
       _loading = false;
       _error = true;
+      log("eroor");
       notifyListeners();
-      ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the internet");
-    } on DioError catch (e) {
+    } else {
+      log('yes');
+      cartList.add(data);
       _loading = false;
-      _error = true;
       notifyListeners();
-     ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the internet");
-    } catch (e) {
-      _loading=false;
-    _error=true;
-    notifyListeners();
-      print(e.toString());
-        ShowDialiogfn(context, "Check your network settings and try again", "Can't reacah the interen");
     }
   }
 
-//-----------------------------------------remove from carts=========================================\\
-  void RemoveFromCart(String id, context) async {
-    try {
-      final tocken = await UserServieces.getToken();
 
-      final response = await Dio().delete(
-        "$BaseUrl/user/removeFromCart/$id",
-        options: Options(
-          headers: {"Authorization": tocken},
-        ),
-      ); //
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        showSnackBar(
-            "Successfully Removed from Wishlist", Colors.green, context);
-
-        GetCartslist(context);
-      }
-    } on SocketException {
-      showSnackBar("No internet connection", Colors.red, context);
-    } on TimeoutException {
-      showSnackBar("No internet connection", Colors.red, context);
-    } on DioError catch (e) {
-      if (e.response == null) {
-        log("no internet");
-      } else if (e.response!.statusCode == 400) {
-        showSnackBar("course already Removed", Colors.red, context);
-      }
-    } catch (e) {
-      print(e.toString());
-    }
+//-----------------------------------add to cart------------------------------------->
+  addTocart(String id, context) async {
+    await CartServieces().addtocart(id, context);
+    GetCartslist(context);
+   
+  }
+//-----------------------------------add to wishlist------------------------------------->
+  RemoveFromCart(String id, context) async {
+    await CartServieces().RemoveFromCart(id, context);
+    GetCartslist(context);
   }
 }

@@ -70,7 +70,6 @@ class ViewCourses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     init(context);
     final size1 = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -118,8 +117,7 @@ class ViewCourses extends StatelessWidget {
                       height: size1 * 0.3,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(imagepath),
-                            fit: BoxFit.cover),
+                            image: NetworkImage(imagepath), fit: BoxFit.cover),
                       ),
                       child: const Icon(
                         Icons.play_arrow_sharp,
@@ -241,7 +239,7 @@ class ViewCourses extends StatelessWidget {
                             builder: (context) => const CartPage(),
                           ));
                         } else {
-                          value.addtocart(id, context);
+                          value.addTocart(id, context);
                         }
                       },
                       style: ElevatedButton.styleFrom(
