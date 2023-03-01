@@ -1,22 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/controllers/controller_vishllist.dart';
-import 'package:logo_e_learning/controllers/provider_courses.dart';
-import 'package:logo_e_learning/controllers/shared_prefs_servieses.dart';
 import 'package:logo_e_learning/model/UserDetails_model.dart';
+import 'package:logo_e_learning/servies/userprofile.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDetails extends ChangeNotifier {
-  List<UserDetailsModel> userDetatailss = [];
   bool _error = false;
   bool _loading = false;
+  List<UserDetailsModel> userDetailslist = [];
 
   bool allfnloading = false;
   bool errorforallfn = false;
@@ -24,39 +18,22 @@ class UserDetails extends ChangeNotifier {
   bool get loading => _loading;
   bool get eroor => _error;
   Future<void> getUserDetails() async {
-    try {
-      _loading = true;
-      notifyListeners();
-      final tocken = await UserServieces.getToken();
-
-      final response = await Dio().get("$BaseUrl/user/userProfile",
-          options: Options(
-            headers: {"Authorization": tocken},
-          ));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        _loading = false;
-      }
-    } on SocketException {
-     
-
+    _loading = true;
+    _error = false;
+    notifyListeners();
+    final data = await UserDetailsServices().getUserDetails();
+    if (data != null) {
+      userDetailslist.clear();
+      userDetailslist.add(data);
+      log("userDetaiils get $userDetailslist");
+//log(userDetailslist[0].userDetails.toString());
       _loading = false;
-      _error = true;
       notifyListeners();
-    } on TimeoutException {
+    } else {
+      log("userdaetail null");
+      _error = true;
       _loading = false;
-      _error = true;
       notifyListeners();
- //     print("eroor=timeout");
-    } on DioError catch (e) {
-      _loading = false;
-      _error = true;
-      notifyListeners();
-   //   print("eroor$e");
-    } catch (e) {
-      _loading = false;
-      _error = true;
-      notifyListeners();
-      print("$e.eroor");
     }
   }
 

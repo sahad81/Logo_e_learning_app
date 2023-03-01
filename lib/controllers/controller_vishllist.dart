@@ -39,7 +39,7 @@ class WishListP extends ChangeNotifier {
 
     final data = await WishlistServieces().GetWishlists(context);
     if (data == null) {
-      _loading = true;
+      _loading = false;
       _error = true;
       notifyListeners();
     } else {

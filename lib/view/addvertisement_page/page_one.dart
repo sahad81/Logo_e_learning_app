@@ -6,42 +6,17 @@ import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/view/addvertisement_page/page_two.dart';
 
-class Add_page extends StatelessWidget {
-  const Add_page({super.key});
+class OnbordingScreenn1 extends StatelessWidget {
+  const OnbordingScreenn1({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size1 = MediaQuery.of(context).size.height;
     return Scaffold(
-        floatingActionButton: Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * 0.043,
-              right: MediaQuery.of(context).size.width * 0.043),
-          child: FloatingActionButton.extended(
-            backgroundColor: Colors.blue.shade100,
-            label: Ktext(text: "Next", color: kblack, size: 20),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Second_add(),
-              ));
-            },
-
-            //   onPressed: () {
-            //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),));
-
-            // }
-            // ,
-          ),
-        ),
+      
         body: SafeArea(
             child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.white, Colors.blue.shade200],
-                  ),
-                ),
+             color: Colors.blue.shade100,
                 child: Padding(
                   padding: const EdgeInsets.all(14),
                   child: Column(children: [

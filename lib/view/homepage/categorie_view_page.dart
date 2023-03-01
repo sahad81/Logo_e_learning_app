@@ -19,7 +19,7 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final valup = Provider.of<ProviderCoursess>(context, listen: false);
+  
 
     return Scaffold(
       appBar: AppBar(
@@ -64,7 +64,7 @@ class CategoryPage extends StatelessWidget {
                                 titile: value.categoryselectedlist[index].title
                                     .toString(),
                                 imagepath:
-                                    "http://$ipadressimg:3000/${value.categoryselectedlist[index].imgPath.toString()}",
+              "http://$ipadressimg:3000/${value.categoryselectedlist[index].imgPath.toString()}",
                                 rating: "5",
                                 ratingCount: "599",
                                 discription: value

@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentProvider with ChangeNotifier {
@@ -14,11 +16,12 @@ class PaymentProvider with ChangeNotifier {
   }
 
   void handlePaymentSuccess(PaymentSuccessResponse response) {
+    
     log("set");
     // Handle payment success
   }
 
-  void handlePaymentError(PaymentFailureResponse response) {
+  void handlePaymentError( PaymentFailureResponse response) {
     log("eroor");
     // Handle payment error
   }

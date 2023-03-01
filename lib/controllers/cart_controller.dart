@@ -1,9 +1,10 @@
 // ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names, unused_catch_clause, unused_field, prefer_final_fields, avoid_print
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:logo_e_learning/const/widgets/snackbar.dart';
 import 'package:logo_e_learning/servies/cart_servieces.dart';
 import '../model/getcart_model.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class CartProvider extends ChangeNotifier {
   bool _error = false;
   bool _loading = false;
@@ -72,5 +73,16 @@ class CartProvider extends ChangeNotifier {
   RemoveFromCart(String id, context) async {
     await CartServieces().RemoveFromCart(id, context);
     GetCartslist(context);
+  }
+
+
+
+ Future<void> checkOut(BuildContext context)async{
+final  url="https://www.youtube.com/watch?v=T0qbFgbFhg0&ab_channel=HeyFlutter%E2%80%A4com";
+
+if (!await launchUrl(Uri.parse(url ))) {
+  // ignore: use_build_context_synchronously
+  throw showSnackBar("No internet", Colors.red, context);
+}
   }
 }

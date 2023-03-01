@@ -1,53 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
-import 'package:logo_e_learning/view/mainpage/screen_main_page.dart';
 
-import 'package:provider/provider.dart';
-
-class Thirdapp extends StatelessWidget {
-  const Thirdapp({super.key});
+class OnbordingScreenn3 extends StatelessWidget {
+  const OnbordingScreenn3({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size1 = MediaQuery.of(context).size.height;
     return Scaffold(
-        floatingActionButton: Padding(
-          padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height * 0.043,
-              right: MediaQuery.of(context).size.width * 0.043),
-          child: FloatingActionButton.extended(
-            backgroundColor: Colors.blue.shade100,
-            label: Ktext(text: "let's start", color: kblack, size: 20),
-            onPressed: () {
-              
-              
-              
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Screenmainpage(),
-              ));
-            },
-
-            //   onPressed: () {
-            //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),));
-
-            // }
-            // ,
-          ),
-        ),
         body: SafeArea(
             child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.white, Colors.blue.shade200],
-                  ),
-                ),
+                decoration: BoxDecoration(color: Colors.blue.shade100),
                 child: Padding(
                   padding: const EdgeInsets.all(14),
                   child: Column(children: [
@@ -82,7 +48,7 @@ class Thirdapp extends StatelessWidget {
                         ),
                       ),
                     ),
-                   ]),
+                  ]),
                 ))));
   }
 }

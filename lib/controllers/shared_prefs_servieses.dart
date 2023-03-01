@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+
 import 'package:logo_e_learning/view/splash/splash_screen.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
-class UserServieces {
+class UserServieces  {
   bool? result;
 
   //==================grtting Tocken-------------------->
@@ -33,13 +35,19 @@ class UserServieces {
       'user_details',
     );
     prefs.remove("email");
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
+
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(
       builder: (context) => const SplashScreen(),
-    ));
+    ))
+        .then((_) {
+ 
+      log("cleard");
+    });
   }
 
 // ----------------sstoring email from login and signup page--------------------->
-  static Future emailsever(String email) async {
+  static Future saveEmail(String email) async {
     final prefs = await SharedPreferences.getInstance();
 
     prefs.setString('email', email);

@@ -8,16 +8,28 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/const/widgets/snackbar.dart';
-import 'package:logo_e_learning/controllers/provider_authentication.dart';
+import 'package:logo_e_learning/controllers/login_controller.dart';
 
 import 'package:logo_e_learning/model/login.dart';
-import 'package:logo_e_learning/view/mainpage/screen_main_page.dart';
+import 'package:logo_e_learning/view/BottomNav/bottom_nav.dart';
+
+import 'package:provider/provider.dart';
 
 import '../controllers/shared_prefs_servieses.dart';
 
 class LoginServices {
   Future<LoginModel?> loginpostfunction(
       String email, String password, BuildContext context) async {
+          showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          color: Colors.white,
+          backgroundColor: Colors.black54,
+        ),
+      ),
+    );
     try {
       final response = await Dio()
           .post(
@@ -35,14 +47,12 @@ class LoginServices {
       if (response.statusCode == 200) {
         showSnackBar("Login Successfully completed", Colors.green, context);
         log("seccess");
-        UserServieces.emailsever(email);
-        Authentication().getimail();
-
+    await    UserServieces.saveEmail(email);
+      await Provider.of<LoginController>(context,listen: false).getEmail();
         //     return response.data;
         //------------storing email and user details----------------->
         UserServieces().storeUserDetails(response.data).then((value) =>
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => Screenmainpage())));
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder:(context) => const BottomNavigationScreen()), (route) => false));
       }
     } on SocketException {
       showDialog(

@@ -38,7 +38,7 @@ class ProviderCoursess with ChangeNotifier {
     try {
       _loading = true;
       _error = false;
-      _loading = true;
+    
       _errorMessage = "";
 
       notifyListeners();
@@ -102,7 +102,7 @@ class ProviderCoursess with ChangeNotifier {
         _loading = false;
         _error = true;
         _errorMessage = e.toString();
-        _error = true;
+       
         notifyListeners();
       } else {
         _loading = false;

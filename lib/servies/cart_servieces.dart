@@ -14,7 +14,7 @@ import '../const/widgets/snackbar.dart';
 import '../controllers/shared_prefs_servieses.dart';
 
 class CartServieces {
-//===============================================add to cart   postfuntion====================================\\
+//===============================================add to cart ====================================\\
   addtocart(String id, context) async {
     try {
       final tocken = await UserServieces.getToken();
@@ -54,10 +54,16 @@ class CartServieces {
           options: Options(headers: {
             "Authorization": tocken,
           
-          }));
-           final  carts = CartModel.fromJson(response.data);
+          })).timeout(const Duration(seconds: 15));
+        
+      if (response.statusCode==200) {
+               final  carts = CartModel.fromJson(response.data);
            log(carts.toString());
           return carts;
+            
+        
+      }
+          
     } on SocketException {
       // ShowDialiogfn(context, "Check your network settings and try again",
       //     "Can't reacah the internet");

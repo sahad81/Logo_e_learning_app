@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final UserDetailsModel = UserDetailsModelFromJson(jsonString);
 
 class UserDetailsModel {
   UserDetailsModel({
@@ -14,10 +11,7 @@ class UserDetailsModel {
   factory UserDetailsModel.fromJson(Map<String, dynamic> json) =>
       UserDetailsModel(
         userDetails: UserDetailsM.fromJson(json["userDetails"]),
-       
       );
-
-
 }
 
 class UserDetailsM {

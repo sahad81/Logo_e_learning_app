@@ -21,15 +21,15 @@ class CartPage extends StatefulWidget {
 
   @override
   State<CartPage> createState() => _CartPageState();
-  
 }
 
 class _CartPageState extends State<CartPage> {
-@override
+  @override
   void initState() {
-   Provider.of<PaymentProvider>(context,listen: false).makepayment();
+    Provider.of<PaymentProvider>(context, listen: false).makepayment();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final sizeh = MediaQuery.of(context).size.height;
@@ -156,10 +156,17 @@ class _CartPageState extends State<CartPage> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  log("clicked");
-                                  Provider.of<PaymentProvider>(context,
+                                  Provider.of<CartProvider>(context,
                                           listen: false)
-                                      .openCheckout(Provider.of<CartProvider>(context,listen: false).totalcartAmount().toInt());
+                                      .checkOut(context);
+                                  log("clicked");
+                                  // Provider.of<PaymentProvider>(context,
+                                  //         listen: false)
+                                  //     .openCheckout(Provider.of<CartProvider>(
+                                  //             context,
+                                  //                                               listen: false)
+                                  //         .totalcartAmount()
+                                  //         .toInt());
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
@@ -219,9 +226,7 @@ class _CartPageState extends State<CartPage> {
               return value.loading == true
                   ? const Center(child: CircularProgressIndicator())
                   : value.eroor == true
-                      ? ConnnectionError(
-                          size1: sizeh,
-                        )
+                      ? const ConnnectionError()
                       : value.cartList[0].data!.isEmpty
                           ? CartisEmpty(sizeh: sizeh, sizef: sizef)
                           : ListView.separated(

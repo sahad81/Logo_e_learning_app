@@ -3,16 +3,24 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:logo_e_learning/controllers/bottom_nav_controller.dart';
+import 'package:logo_e_learning/controllers/cart_controller.dart';
+import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/my_learning_controller.dart';
+import 'package:logo_e_learning/controllers/user_details.dart';
 
 import 'package:logo_e_learning/servies/login_servieces.dart';
-import 'package:logo_e_learning/view/mainpage/screen_main_page.dart';
+import 'package:logo_e_learning/view/addvertisement_page/onbording.dart';
+import 'package:logo_e_learning/view/homepage/homepage.dart';
+import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validators/validators.dart';
 
 import '../view/Authentication/login_page.dart';
+import '../view/BottomNav/bottom_nav.dart';
 
-class Authentication extends ChangeNotifier {
+class LoginController extends ChangeNotifier {
   bool passwordishiden = true;
   bool passwordishideniSignup = true;
   bool email_is_valid = true;
@@ -28,8 +36,10 @@ class Authentication extends ChangeNotifier {
 
   //-------------userlogin-------------------->
   Future loginpostfunction(
+    
     context,
   ) async {
+          
     await LoginServices().loginpostfunction(
         email_controler.text, password_controller.text, context);
 
@@ -43,10 +53,7 @@ class Authentication extends ChangeNotifier {
     notifyListeners();
   }
 
-  togglepasswordviewsignUp() {
-    passwordishideniSignup = !passwordishideniSignup;
-    notifyListeners();
-  }
+
 
 //--------------email checking---------------->
   void ismailisValid(value) {
@@ -56,33 +63,39 @@ class Authentication extends ChangeNotifier {
 
 //------------checking user or not------------>
   getdata(context) async {
+ 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? _b = prefs.getBool("isLoggedIn");
 
     if (_b == true) {
-      getimail();
+      getEmail();
       log("uers");
       Future.delayed(const Duration(seconds: 2)).whenComplete(
         () => Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) {
-            return Screenmainpage();
+            return BottomNavigationScreen();
           }),
         ),
       );
     } else {
+        Provider.of<MyLearningsController>(context,listen: false).myCourses.clear();
+        Provider.of<WishListP>(context,listen: false).WishlistG.clear();
+    Provider.of<CartProvider>(context,listen: false ).cartList.clear();
+    Provider.of<UserDetails>(context, listen: false).userDetailslist.clear();
       log("not a user");
       Future.delayed(const Duration(seconds: 2)).whenComplete(
         () => Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) {
-            return LoginPage();
+            return  OnbordingScreenn();
           }),
         ),
       );
     }
   }
 
-  getimail() async {
+  getEmail() async {
     final prefs = await SharedPreferences.getInstance();
     email = prefs.getString('email');
+    log(email.toString());
   }
 }

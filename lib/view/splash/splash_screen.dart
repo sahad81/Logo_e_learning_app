@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:logo_e_learning/controllers/provider_authentication.dart';
+import 'package:logo_e_learning/controllers/login_controller.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +10,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Authentication>(context).getdata(context);
+    Provider.of<LoginController>(context).getdata(context);
 
     return Scaffold(
       body: Container(
