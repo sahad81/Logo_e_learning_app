@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:logo_e_learning/const/colors.dart';
@@ -19,8 +17,6 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kwite,
@@ -29,7 +25,7 @@ class CategoryPage extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
         ),
       ),
       body: SafeArea(
@@ -44,16 +40,26 @@ class CategoryPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Ktext(text: category!, color: kblack, size: 26,weight: FontWeight.bold,),
-                    SizedBox(height: 10,),
-                    Ktext(text: "Courses to get you started", color: kblack, size: 22),
+                    Ktext(
+                      text: category!,
+                      color: kblack,
+                      size: 26,
+                      weight: FontWeight.bold,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Ktext(
+                        text: "Courses to get you started",
+                        color: kblack,
+                        size: 22),
                   ],
                 ),
               ),
               Consumer<ProviderCoursess>(builder: (context, value, child) {
                 return ListView.separated(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       //  valup.filter();
 
@@ -64,9 +70,9 @@ class CategoryPage extends StatelessWidget {
                                 titile: value.categoryselectedlist[index].title
                                     .toString(),
                                 imagepath:
-              "http://$ipadressimg:3000/${value.categoryselectedlist[index].imgPath.toString()}",
-                                rating: "5",
-                                ratingCount: "599",
+                                    "http://$ipadressimg:3000/${value.categoryselectedlist[index].imgPath.toString()}",
+                                rating:value.categoryselectedlist[index].totalStar!.toInt(),
+                                ratingCount:value.categoryselectedlist[index].ratedUsers.toString(),
                                 discription: value
                                     .categoryselectedlist[index].description
                                     .toString(),
@@ -77,30 +83,29 @@ class CategoryPage extends StatelessWidget {
                                 price: value.categoryselectedlist[index].price
                                     .toString(),
                                 offerprice: "5000",
-                                indrudectionVedio:
-                                    value.categoryselectedlist[index].modules!,
+                             
                                 id: value.categoryselectedlist[index].id
                                     .toString()),
                           ));
                         },
                         child: InkWell(
                           onTap: () {
-                            final v=value.categoryselectedlist[index];
-                                        Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ViewCourses(
-                            titile: v.title.toString(),
-                            imagepath:
-                                "http://$ipadressimg:3000/${v.imgPath.toString()}",
-                            rating: "4.5",
-                            ratingCount: "569",
-                            discription: v.description.toString(),
-                            language: "malayalam",
-                            teacher: v.teacher.toString(),
-                            price: v.price.toString(),
-                            offerprice: "599",
-                            indrudectionVedio: v.modules!,
-                            id: v.id.toString()),
-                      ));
+                            final v = value.categoryselectedlist[index];
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ViewCourses(
+                                  titile: v.title.toString(),
+                                  imagepath:
+                                      "http://$ipadressimg:3000/${v.imgPath.toString()}",
+                                  rating: v.totalStar!.toInt(),
+                                  ratingCount: "569",
+                                  discription: v.description.toString(),
+                                  language: "malayalam",
+                                  teacher: v.teacher.toString(),
+                                  price: v.price.toString(),
+                                  offerprice: "599",
+                                  
+                                  id: v.id.toString()),
+                            ));
                           },
                           child: ListTile(
                             leading: Container(
@@ -129,18 +134,25 @@ class CategoryPage extends StatelessWidget {
                                     color: Colors.grey,
                                     size: 16),
                                 Row(
-                                  children: const [
-                                    Text('4.4'),
-                                    SizedBox(width: 3),
-                                    Stars(),
+                                  children: [
+                                    Text(value
+                                        .categoryselectedlist[index].totalStar
+                                        .toString()),
+                                    const SizedBox(width: 3),
+                                    Stars(
+                                        count: value.categoryselectedlist[index]
+                                            .totalStar!
+                                            .toInt()),
                                     Ktext(
-                                        text: "(400)",
+                                        text:
+                                            "(${value.categoryselectedlist[index].ratedUsers.toString()})",
                                         color: Colors.grey,
                                         size: 12),
                                   ],
                                 ),
                                 Ktext(
-                                  text: "5000",
+                                  text: value.categoryselectedlist[index].price
+                                      .toString(),
                                   color: kblack,
                                   size: 15,
                                   weight: FontWeight.bold,
@@ -151,7 +163,7 @@ class CategoryPage extends StatelessWidget {
                         ),
                       );
                     },
-                    separatorBuilder: (context, index) => Divider(),
+                    separatorBuilder: (context, index) => const Divider(),
                     itemCount: value.categoryselectedlist.length);
               })
             ],

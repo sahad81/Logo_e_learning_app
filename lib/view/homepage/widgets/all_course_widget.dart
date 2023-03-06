@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/model/courses_model.dart';
 import 'package:logo_e_learning/view/homepage/widgets/rating_stars.dart';
 import 'package:logo_e_learning/view/view_course/view_course.dart';
@@ -30,7 +30,7 @@ class AllCourseWidget extends StatelessWidget {
   final String img;
   final String price;
   final String offerprice;
-  final String rating;
+  final int rating;
   final String ratingcount;
   final String course_titile;
   final String teacher;
@@ -46,10 +46,10 @@ class AllCourseWidget extends StatelessWidget {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ViewCourses(
               id: id,
-              indrudectionVedio: indru,
+            
               titile: course_titile,
               imagepath: img,
-              rating: rating,
+              rating: rating.toInt(),
               ratingCount: ratingcount,
               discription: discription,
               language: language,
@@ -98,8 +98,8 @@ class AllCourseWidget extends StatelessWidget {
                           size: size1 * 0.016),
                       Row(
                         children: [
-                          Text(rating),
-                          const Stars(),
+                          Text(rating.toString()),
+                           Stars(count: rating),
                           Ktext(
                               text: "($ratingcount)",
                               color: Colors.grey,

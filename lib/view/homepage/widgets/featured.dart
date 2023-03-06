@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logo_e_learning/const/strings.dart';
 
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/controllers/my_learning_controller.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
 import 'package:logo_e_learning/const/colors.dart';
@@ -32,7 +32,7 @@ class Featured extends StatelessWidget {
                 Provider.of<WishListP>(context).loading == true ||
                 Provider.of<MyLearningsController>(context).loading == true ||
                 Provider.of<UserDetails>(context).loading == true
-            ? Center(
+            ? const Center(
                 child: MyLoadingWidget(),
               )
             : value.eroor == true ||
@@ -190,8 +190,8 @@ class Featured extends StatelessWidget {
                                       "http://$ipadressimg:3000/${values.imgPath.toString()}",
                                   price: values.price.toString(),
                                   offerprice: "500",
-                                  rating: "4.4",
-                                  ratingcount: "200",
+                                  rating: values.totalStar! .toInt(),
+                                  ratingcount: values.ratedUsers.toString(),
                                   course_titile: values.title.toString(),
                                 ),
                               );

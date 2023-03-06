@@ -3,21 +3,19 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:logo_e_learning/controllers/bottom_nav_controller.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/controllers/my_learning_controller.dart';
 import 'package:logo_e_learning/controllers/user_details.dart';
 
 import 'package:logo_e_learning/servies/login_servieces.dart';
 import 'package:logo_e_learning/view/addvertisement_page/onbording.dart';
-import 'package:logo_e_learning/view/homepage/homepage.dart';
 import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validators/validators.dart';
 
-import '../view/Authentication/login_page.dart';
+
 import '../view/BottomNav/bottom_nav.dart';
 
 class LoginController extends ChangeNotifier {
@@ -73,7 +71,7 @@ class LoginController extends ChangeNotifier {
       Future.delayed(const Duration(seconds: 2)).whenComplete(
         () => Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) {
-            return BottomNavigationScreen();
+            return const BottomNavigationScreen();
           }),
         ),
       );

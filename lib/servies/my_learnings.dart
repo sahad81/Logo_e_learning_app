@@ -22,7 +22,7 @@ Dio dio = Dio();
           .get("$BaseUrl/user/enrolledCourses",
               options: Options(headers: {
                 "Authorization": tocken,
-              })).timeout(Duration(seconds: 15));
+              })).timeout(const Duration(seconds: 15));
 if (response.statusCode== 200) {
 
 final data= MyCoursesModel.fromJson(response.data);  

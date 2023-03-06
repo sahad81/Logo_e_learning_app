@@ -3,22 +3,21 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/const/widgets/snackbar.dart';
-import 'package:logo_e_learning/controllers/cart_controller.dart';
 import 'package:logo_e_learning/controllers/otp_controller.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 class Otp extends StatelessWidget {
   const Otp({super.key, this.email});
+// ignore: prefer_typing_uninitialized_variables
 final email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(0, 190, 177, 177),
+        backgroundColor: const Color.fromARGB(0, 190, 177, 177),
         elevation: 0,
           leading: const BackButton(
     color: Colors.black, // <-- SEE HERE
@@ -41,23 +40,23 @@ final email;
                   padding: const EdgeInsets.all(18),
                   child: Column(children: [
                 
-                     SizedBox(
+                     const SizedBox(
                   height: 20,
                               ),
                               SvgPicture.asset(
                                       "assets/undraw_mail_sent_re_0ofv.svg",height: 100,width: 100,fit: BoxFit.fitHeight,
                                     ),
-                              SizedBox(
+                              const SizedBox(
                   height: 24,
                               ),
-                              Text(
+                              const Text(
                   'Verification',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                   height: 10,
                               ),
                           Ktext(text: "Please enter the verification code that we sent to your email $email",
@@ -65,7 +64,7 @@ final email;
                            
                            )
                               ,
-                              SizedBox(
+                              const SizedBox(
                   height: 28,
                               ),
                               

@@ -1,8 +1,6 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
 import 'package:logo_e_learning/view/homepage/widgets/rating_stars.dart';
@@ -35,14 +33,15 @@ class MobileDevelopmentWidget extends StatelessWidget {
                         titile: v.title.toString(),
                         imagepath:
                             "http://$ipadressimg:3000/${value.MobileDevelopment[index].imgPath.toString()}",
-                        rating: "4.5",
-                        ratingCount: "569",
+                        rating: v.totalStar!.toInt()
+                        ,
+                        ratingCount: v.ratedUsers.toString(),
                         discription: v.description.toString(),
                         language: "malayalam",
                         teacher: v.teacher.toString(),
                         price: v.price.toString(),
                         offerprice: "599",
-                        indrudectionVedio: v.modules!,
+                    
                         id: v.id.toString()),
                   ));
                 },
@@ -82,12 +81,12 @@ class MobileDevelopmentWidget extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text('4.4'),
-                                SizedBox(width: 3),
-                                Stars(),
+                                Text(value.MobileDevelopment[index].totalStar.toString()),
+                                const SizedBox(width: 3),
+                                Stars(count: value.MobileDevelopment[index].totalStar!.toInt()),
                                 Expanded(
                                     child: Ktext(
-                                        text: "(400)",
+                                        text: "(${value.MobileDevelopment[index].ratedUsers})",
                                         color: Colors.grey,
                                         size: size1 * 0.014))
                               ],
@@ -131,7 +130,7 @@ class MobileDevelopmentWidget extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (context, index) => SizedBox(width: 7),
+          separatorBuilder: (context, index) => const SizedBox(width: 7),
           itemCount: context.read<ProviderCoursess>().MobileDevelopment.length,
         ),
       );

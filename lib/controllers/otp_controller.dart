@@ -22,7 +22,9 @@ otp.clear();
 loading=false;
 notifyListeners();
     if (verified!=null) {
+      // ignore: use_build_context_synchronously
       showSnackBar("Succesfully Registered", Colors.green, context);
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage(),));
       
     } 

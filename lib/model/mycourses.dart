@@ -83,14 +83,17 @@ class Module {
   Module({
     this.vidioTitle,
     this.vedioPath,
+    this.notesPath
   });
 
   String? vidioTitle;
   String? vedioPath;
+  String? notesPath;
 
   factory Module.fromJson(Map<String, dynamic> json) => Module(
         vidioTitle: json["vidioTitle"],
         vedioPath: json["vedioPath"],
+        notesPath: json["notePath"]
       );
 }
 

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/controllers/my_learning_controller.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
 import 'package:logo_e_learning/const/colors.dart';
 
 import 'package:logo_e_learning/const/widgets/cart_bn.dart';
+import 'package:logo_e_learning/controllers/search_controller.dart';
 import 'package:logo_e_learning/controllers/user_details.dart';
 
 import 'package:logo_e_learning/view/homepage/widgets/featured.dart';
@@ -53,6 +54,7 @@ class _HomePageState extends State<HomePage> {
           ? Provider.of<CartProvider>(context, listen: false)
               .GetCartslist(context)
           : "";
+          Provider.of<SearchController>(context,listen: false).getsearchedCourses("");
     });
     super.initState();
   }

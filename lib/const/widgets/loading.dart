@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MyLoadingWidget extends StatelessWidget {
+  const MyLoadingWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,7 +28,7 @@ class MyLoadingWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Container(
                   width: 150.0,
                   height: 20.0,

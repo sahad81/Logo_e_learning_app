@@ -1,14 +1,15 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
 import 'package:logo_e_learning/controllers/my_learning_controller.dart';
+import 'package:logo_e_learning/controllers/search_controller.dart';
 import 'package:logo_e_learning/controllers/user_details.dart';
-import 'package:logo_e_learning/model/courses_model.dart';
+
 import 'package:provider/provider.dart';
 
 import '../colors.dart';
 import '../kwidgets.dart';
-import '../../controllers/controller_vishllist.dart';
+import '../../controllers/controller_wishllist.dart';
 import '../../controllers/provider_courses.dart';
 
 class ConnnectionError extends StatelessWidget {
@@ -58,7 +59,8 @@ class ConnnectionError extends StatelessWidget {
                         .GetCartslist(context);
                          Provider.of<MyLearningsController>(context, listen: false).MyLearningsModules();
                           Provider.of<ProviderCoursess>(context, listen: false).GetAllCourses(context);
-                           Provider.of<UserDetails>(context, listen: false).getUserDetails();
+            Provider.of<UserDetails>(context, listen: false).getUserDetails();
+            Provider.of<SearchController>(context,listen: false).getsearchedCourses("");
                   },
                   child: const Text("Retry")),
             ],

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Stars extends StatelessWidget {
-  const Stars({super.key,});
-
+  const Stars({super.key, required this.count,});
+final int count;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.25,
+      width: MediaQuery.of(context).size.width*count*0.05,
       height: 30,
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
@@ -22,7 +22,7 @@ class Stars extends StatelessWidget {
               width: .6,
             );
           },
-          itemCount: 5),
+          itemCount: count),
     );
   }
 }

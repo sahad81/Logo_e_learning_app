@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/const/widgets/conncetion_error_widget.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/view/homepage/widgets/rating_stars.dart';
@@ -107,7 +107,7 @@ class Wishlist extends StatelessWidget {
                                                           text: "3  ",
                                                           color: kblack,
                                                           size: sizeh * 0.0145),
-                                                      const Stars(),
+                                                      const Stars(count: 3 ),
                                                     ],
                                                   ),
                                                   Row(children: [
@@ -160,7 +160,7 @@ class Wishlist extends StatelessWidget {
                                                           .width *
                                                       0.20,
                                                   image: NetworkImage(
-                                                    "http://$ipadressimg:3000/${data.courseDetails![0].imgPath.toString()}",
+                                        "http://$ipadressimg:3000/${data.courseDetails![0].imgPath.toString()}",
                                                   )),
                                             ),
                                           );

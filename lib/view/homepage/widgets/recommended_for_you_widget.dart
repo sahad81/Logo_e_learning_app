@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +13,7 @@ import 'package:provider/provider.dart';
 
 import '../../../const/colors.dart';
 import '../../../controllers/cart_controller.dart';
-import '../../../controllers/controller_vishllist.dart';
+import '../../../controllers/controller_wishllist.dart';
 
 class RecommendedForYouWidget extends StatelessWidget {
   const RecommendedForYouWidget({super.key});
@@ -37,19 +39,22 @@ class RecommendedForYouWidget extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       final v = value.Recommended_For_You_List[index];
+                      log(   v.ratedUsers.toString());
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ViewCourses(
+                      
                             titile: v.title.toString(),
                             imagepath:
                                 "http://$ipadressimg:3000/${value.Recommended_For_You_List[index].imgPath.toString()}",
-                            rating: "4.5",
-                            ratingCount: "569",
+                            rating: v.totalStar!.toInt(),
+                          
+                            ratingCount: v.ratedUsers.toString(),
                             discription: v.description.toString(),
                             language: "malayalam",
                             teacher: v.teacher.toString(),
                             price: v.price.toString(),
                             offerprice: "599",
-                            indrudectionVedio: v.modules!,
+                          
                             id: v.id.toString()),
                       ));
                     },
@@ -96,11 +101,11 @@ class RecommendedForYouWidget extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    const Text('4.4'),
+                                     Text(value.Recommended_For_You_List[index].totalStar.toString()),
                                     const SizedBox(width: 3),
-                                    const Stars(),
+                                     Stars(count: value.Recommended_For_You_List[index].totalStar!.toInt()),
                                     Ktext(
-                                        text: "(400)",
+                                        text: "(${value.Recommended_For_You_List[index].ratedUsers})",
                                         color: Colors.grey,
                                         size: size1 * 0.014)
                                   ],
@@ -124,7 +129,7 @@ class RecommendedForYouWidget extends StatelessWidget {
                                           style: TextStyle(
                                               fontSize: 16, color: kblueGray),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 7,
                                         ),
                                         Row(children: [
@@ -135,7 +140,7 @@ class RecommendedForYouWidget extends StatelessWidget {
                                                 color: Colors.green,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 2,
                                           ),
                                           Text(

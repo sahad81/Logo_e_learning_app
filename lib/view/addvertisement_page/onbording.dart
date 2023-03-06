@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/controllers/onbording_page.dart';

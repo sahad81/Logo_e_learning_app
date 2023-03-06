@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
-import 'package:logo_e_learning/view/addvertisement_page/page_two.dart';
 
 class OnbordingScreenn1 extends StatelessWidget {
   const OnbordingScreenn1({super.key});

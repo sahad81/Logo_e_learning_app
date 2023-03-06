@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logo_e_learning/const/colors.dart';
@@ -52,7 +52,7 @@ class CartisEmpty extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
 
-                      primary:Colors.blue.shade900 // Background color
+                      backgroundColor:Colors.blue.shade900 // Background color
                     ),
                     onPressed: () {},
                     child: Ktext(

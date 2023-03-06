@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
-import 'package:logo_e_learning/model/UserDetails_model.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
+import 'package:logo_e_learning/model/user_details_model.dart';
 import 'package:logo_e_learning/servies/userprofile.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -8,8 +8,6 @@ List<CouressModel> couressModelFromJson(String str) => List<CouressModel>.from(
     json.decode(str).map((x) => CouressModel.fromJson(x)));
 mapToString(Map<String, dynamic> map) {
   jsonEncode(map);
-  CouressModel WislistAndCartFromJson(String str) =>
-      CouressModel.fromJson(json.decode(str));
 }
 
 
@@ -23,7 +21,9 @@ class CouressModel {
      this.teacher,
      this.modules,
      this.imgPath,
-      this.category
+      this.category,
+       this. totalStar,
+        this. ratedUsers
   });
 
   String? id;
@@ -35,8 +35,12 @@ class CouressModel {
   List<Module>? modules;
   String? imgPath;
   String? category;
+  int ? totalStar;
+  int ? ratedUsers;
   factory CouressModel.fromJson(Map<String, dynamic> json) => CouressModel(
         id: json["_id"],
+        totalStar:json["totalStar"],
+        ratedUsers:json["ratedUsers"],
         category: json["category"],
         title: json["title"],
         description: json["description"],

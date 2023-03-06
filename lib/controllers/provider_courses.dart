@@ -9,6 +9,7 @@ import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/const/widgets/snackbar.dart';
 import 'package:logo_e_learning/view/homepage/categorie_view_page.dart';
 
+
 import '../model/courses_model.dart';
 
 class ProviderCoursess with ChangeNotifier {
@@ -32,6 +33,7 @@ class ProviderCoursess with ChangeNotifier {
   bool get loading => _loading;
   bool get eroor => _error;
   String selectedcategory = "";
+bool onvideoTap=false;
 
 //--------------------------getting all courses--------------------------->
   Future<void> GetAllCourses(BuildContext context) async {
@@ -51,9 +53,9 @@ class ProviderCoursess with ChangeNotifier {
 //======== statusCode chacking============================================//
       if (response.statusCode == 200) {
         log("success");
-
+  
         final data = couressModelFromJson(response.body);
-
+log(data[0].ratedUsers.toString());
         allCourse.clear();
         allCourse.addAll(data);
 
@@ -150,6 +152,17 @@ class ProviderCoursess with ChangeNotifier {
     Navigator.of(bcontext).push(MaterialPageRoute(
       builder: (context) => CategoryPage(category: category),
     ));
+  }
+
+
+  //----------------------view indrudection->
+  startvideo(){
+    onvideoTap=false;
+    notifyListeners();
+  }
+  void start(){
+    onvideoTap=false;
+    notifyListeners();
   }
 
 }

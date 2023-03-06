@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:logo_e_learning/model/UserDetails_model.dart';
+import 'package:logo_e_learning/model/user_details_model.dart';
 
 import '../const/strings.dart';
 import '../controllers/shared_prefs_servieses.dart';

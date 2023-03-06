@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:logo_e_learning/controllers/bottom_nav_controller.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/controllers/my_learning_controller.dart';
 import 'package:logo_e_learning/controllers/onbording_page.dart';
 import 'package:logo_e_learning/controllers/otp_controller.dart';
 import 'package:logo_e_learning/controllers/payment_controller.dart';
 import 'package:logo_e_learning/controllers/login_controller.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
+import 'package:logo_e_learning/controllers/search_controller.dart';
 import 'package:logo_e_learning/controllers/signup_controller.dart';
 import 'package:logo_e_learning/controllers/user_details.dart';
-import 'package:logo_e_learning/servies/signup_servieces.dart';
-import 'package:logo_e_learning/view/Authentication/otp.dart';
-import 'package:logo_e_learning/view/addvertisement_page/onbording.dart';
 import 'package:logo_e_learning/view/homepage/categorie_view_page.dart';
-
 import 'package:logo_e_learning/view/splash/splash_screen.dart';
-
 import 'package:logo_e_learning/controllers/feadback_provider.dart';
 
 import 'package:provider/provider.dart';
 
-import 'controllers/shared_prefs_servieses.dart';
-
-void main() {
+void main()async {
+   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(
+    debug: true, // optional: set to false to disable printing logs to console (default: true)
+    ignoreSsl: true // option: set to false to disable working with http links (default: false)
+  );
   runApp(const MyApp());
 }
 
@@ -40,8 +40,9 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => SignupController()),
           ChangeNotifierProvider(create: (context) => ProviderCoursess()),
           ChangeNotifierProvider(create: (context) => WishListP()),
+             ChangeNotifierProvider(create: (context) => SearchController()),
           ChangeNotifierProvider(create: (context) => CartProvider()),
-            ChangeNotifierProvider(create: (context) => OnbordingController()),
+          ChangeNotifierProvider(create: (context) => OnbordingController()),
           ChangeNotifierProvider(
             create: (context) => UserDetails(),
           ),
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => PaymentProvider(),
           ),
+      
           ChangeNotifierProvider(
             create: (context) => MyLearningsController(),
           )
@@ -65,7 +67,8 @@ class MyApp extends StatelessWidget {
           ),
           home: 
         
-          const SplashScreen(),
+           // ignore: prefer_const_constructors
+           SplashScreen(),
           debugShowCheckedModeBanner: false,
           routes: <String, WidgetBuilder>{
             CategoryPage.routName: (context) => const CategoryPage()

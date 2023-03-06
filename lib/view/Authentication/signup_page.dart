@@ -1,10 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'dart:developer';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:iconforest_flutter_cmoon_icons/flutter_cmoon_icons.dart';
 
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
@@ -250,7 +248,7 @@ class SignUp extends StatelessWidget {
                       builder: (context, value, child) {
                     return Center(
                         child: value.loading == true
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : Ktext(
                                 text: "Register",
                                 color: kwite,

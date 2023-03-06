@@ -28,8 +28,8 @@ class BottomNavController extends ChangeNotifier {
 
   List<Widget> page = [
     const HomePage(),
-    Searchsreen(),
-     LearningPage(),
+    const Searchsreen(),
+     const LearningPage(),
     const Wishlist(),
     const MyAccount()
   ];

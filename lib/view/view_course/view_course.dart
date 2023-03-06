@@ -1,28 +1,24 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:logo_e_learning/controllers/cart_controller.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/controllers/provider_courses.dart';
 
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
-import 'package:logo_e_learning/const/strings.dart';
 
 import 'package:logo_e_learning/view/cartPage/cart_page.dart';
 import 'package:logo_e_learning/view/homepage/widgets/rating_stars.dart';
 
-import 'package:logo_e_learning/view/view_course/show_indrudection_video.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/courses_model.dart';
 
 // ignore: must_be_immutable
 class ViewCourses extends StatelessWidget {
-  ViewCourses({
+  const ViewCourses({
     super.key,
     required this.titile,
     required this.imagepath,
@@ -33,13 +29,12 @@ class ViewCourses extends StatelessWidget {
     required this.teacher,
     required this.price,
     required this.offerprice,
-    required this.indrudectionVedio,
     required this.id,
   });
 
   final String titile;
   final String imagepath;
-  final String rating;
+  final int rating;
   final String ratingCount;
   final String discription;
   final String language;
@@ -47,32 +42,12 @@ class ViewCourses extends StatelessWidget {
   final String price;
   final String offerprice;
   final String id;
-  final List<Module> indrudectionVedio;
-
-  String? videoIndrudection;
-  bool isvideo = false;
-
-  init(context) {
-    //  Provider.of<CartProvider>(context).GetCartslist(context);
-    //  log("${videoIndrudection.toString()}hleooo");
-    //  log("h${indrudectionVedio.length.toString()}");
-    // log("h${indrudectionVedio.toString()}");
-    for (int i = 0; i < indrudectionVedio.length; i++) {
-      log(indrudectionVedio[i].videoTitle.toString());
-      if (indrudectionVedio[i].videoTitle.toString() == "indrudection") {
-        videoIndrudection = indrudectionVedio[i].vedioPath.toString();
-        log("${videoIndrudection.toString()}hleooo");
-      } else {
-        log("not");
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    init(context);
     final size1 = MediaQuery.of(context).size.height;
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(elevation: 0, backgroundColor: kwite, actions: [
           IconButton(
               onPressed: () {
@@ -98,34 +73,12 @@ class ViewCourses extends StatelessWidget {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
-                height: size1 * 0.02,
-              ),
-              InkWell(
-                onTap: () {},
-                onHover: (value) {},
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ShowIndrudectionVideo(
-                            url: "$BaseUrl/$videoIndrudection"),
-                      ));
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: size1 * 0.3,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(imagepath), fit: BoxFit.cover),
-                      ),
-                      child: const Icon(
-                        Icons.play_arrow_sharp,
-                        size: 60,
-                      ),
-                    ),
-                  ),
-                ),
+                height: 250,
+                child: Container(
+                    decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(imagepath), fit: BoxFit.cover),
+                )),
               ),
               Ktext(text: titile, color: kblack, size: size1 * 0.027),
               SizedBox(
@@ -138,7 +91,7 @@ class ViewCourses extends StatelessWidget {
               Row(
                 children: [
                   Ktext(
-                    text: rating,
+                    text: rating.toString(),
                     color: kblack,
                     size: size1 * 0.018,
                     weight: FontWeight.bold,
@@ -146,7 +99,9 @@ class ViewCourses extends StatelessWidget {
                   const SizedBox(
                     width: 7,
                   ),
-                  const Stars(),
+                  Stars(
+                    count: rating.toInt(),
+                  ),
                 ],
               ),
               Ktext(
@@ -212,9 +167,9 @@ class ViewCourses extends StatelessWidget {
                     return ElevatedButton(
                       onPressed: () {
                         if (value.checkifinWishlistorNot(id) == true) {
-                          value.AddToWishlist(id, context);
-                        } else {
                           value.RemoveFromWishlist(id, context);
+                        } else {
+                          value.AddToWishlist(id, context);
                         }
                       },
                       style: ElevatedButton.styleFrom(

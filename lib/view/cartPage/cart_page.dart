@@ -10,7 +10,7 @@ import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
 import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/controllers/cart_controller.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+import 'package:logo_e_learning/controllers/controller_wishllist.dart';
 import 'package:logo_e_learning/view/cartPage/widgets/cart_is_empty.dart';
 import 'package:logo_e_learning/const/widgets/conncetion_error_widget.dart';
 import 'package:logo_e_learning/view/homepage/widgets/rating_stars.dart';
@@ -113,7 +113,7 @@ class _CartPageState extends State<CartPage> {
                                       ],
                                     ),
                                   ),
-                                  Divider(
+                                  const Divider(
                                     thickness: 1,
                                   ),
                                   SizedBox(
@@ -154,38 +154,31 @@ class _CartPageState extends State<CartPage> {
                                 left: 15,
                                 right: 15,
                               ),
-                              child: InkWell(
-                                onTap: () {
-                                  Provider.of<CartProvider>(context,
-                                          listen: false)
-                                      .checkOut(context);
-                                  log("clicked");
-                                  // Provider.of<PaymentProvider>(context,
-                                  //         listen: false)
-                                  //     .openCheckout(Provider.of<CartProvider>(
-                                  //             context,
-                                  //                                               listen: false)
-                                  //         .totalcartAmount()
-                                  //         .toInt());
-                                },
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.06,
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue.shade900),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Ktext(
-                                        text: "Checkout",
-                                        color: kwite,
-                                        size:
-                                            MediaQuery.of(context).size.height *
-                                                0.0229),
-                                  ),
+                              child:
+                              SizedBox(
+                                height: 50,
+                                width:MediaQuery.of(context).size.width,
+                                child: ElevatedButton(onPressed: () {
+                                  
+                                }, 
+                                  style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    Colors.blue.shade900, 
+                                    elevation: 6,
+                                    // background color
+                                // text color
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      20), // button border radius
+                                )),
+                                                          
+                                child:const Ktext(text: "Checkout",
+                                 color: Colors.white,
+                                  size: 20 ),
                                 ),
-                              ),
-                            ),
+                              ),),
+                            
+
                             SizedBox(
                               height: sizeh * 0.015,
                             )
@@ -251,10 +244,10 @@ class _CartPageState extends State<CartPage> {
                                           Row(
                                             children: [
                                               Ktext(
-                                                  text: "3  ",
+                                                  text: "${"2"}  ",
                                                   color: kblack,
                                                   size: sizeh * 0.014),
-                                              const Stars(),
+                                              const Stars(count: 3),
                                             ],
                                           ),
                                           Row(

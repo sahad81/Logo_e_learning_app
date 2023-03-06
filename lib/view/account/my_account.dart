@@ -3,10 +3,9 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:logo_e_learning/const/widgets/conncetion_error_widget.dart';
 import 'package:logo_e_learning/controllers/bottom_nav_controller.dart';
-import 'package:logo_e_learning/controllers/cart_controller.dart';
-import 'package:logo_e_learning/controllers/controller_vishllist.dart';
+
 import 'package:logo_e_learning/controllers/login_controller.dart';
-import 'package:logo_e_learning/controllers/my_learning_controller.dart';
+
 import 'package:logo_e_learning/controllers/shared_prefs_servieses.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
@@ -17,7 +16,6 @@ import 'package:logo_e_learning/view/account/widgets/list_tile.dart';
 import 'package:logo_e_learning/const/widgets/cart_bn.dart';
 
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 
 class MyAccount extends StatelessWidget {
   const MyAccount({super.key});
@@ -90,7 +88,7 @@ class MyAccount extends StatelessWidget {
                             ),
                             ListTile(
                               onTap: () {
-                                Share.share('link not fount');
+                               // Share.share('link not fount');
                               },
                               trailing: const Icon(
                                 Icons.arrow_right,
@@ -134,14 +132,12 @@ class MyAccount extends StatelessWidget {
                                                                 Colors.black))),
                                                 TextButton(
                                                     onPressed: () {
-
                                                       //   <! second time-->
-                                                   
+
                                                       UserServieces()
-                                                          .removeUser(context).then((value) {
-         
-                                                          });
-                                                         Provider.of<BottomNavController>(
+                                                          .removeUser(context)
+                                                          .then((value) {});
+                                                      Provider.of<BottomNavController>(
                                                               context,
                                                               listen: false)
                                                           .selectedValue0();

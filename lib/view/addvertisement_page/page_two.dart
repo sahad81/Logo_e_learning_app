@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
-import 'package:logo_e_learning/view/addvertisement_page/page_three.dart';
 class OnbordingScreenn2 extends StatelessWidget {
   const OnbordingScreenn2({super.key});
 

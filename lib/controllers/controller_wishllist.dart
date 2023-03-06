@@ -1,13 +1,8 @@
 // ignore_for_file: unnecessary_null_comparison, non_constant_identifier_names, unused_catch_clause, unused_field, prefer_final_fields
 
-import 'dart:async';
-import 'dart:developer';
-import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-import 'package:logo_e_learning/controllers/shared_prefs_servieses.dart';
-import 'package:logo_e_learning/const/strings.dart';
-import 'package:logo_e_learning/const/widgets/snackbar.dart';
+
 import 'package:logo_e_learning/servies/wishlist_servieces.dart';
 import '../model/wishlist_model.dart';
 

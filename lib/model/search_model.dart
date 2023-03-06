@@ -1,16 +1,14 @@
 // To parse this JSON data, do
+//
+//     final searchModel = searchModelFromJson(jsonString);
 
 import 'dart:convert';
 
-WishlistModel getWishlistFromJson(String str) =>
-    WishlistModel.fromJson(json.decode(str));
+SearchModel searchModelFromJson(String str) =>
+    SearchModel.fromJson(json.decode(str));
 
-mapToString(Map<String, dynamic> map) {
-  jsonEncode(map);
-}
-
-class WishlistModel {
-  WishlistModel({
+class SearchModel {
+  SearchModel({
     required this.status,
     required this.data,
   });
@@ -18,7 +16,7 @@ class WishlistModel {
   bool status;
   List<Datum> data;
 
-  factory WishlistModel.fromJson(Map<String, dynamic> json) => WishlistModel(
+  factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
         status: json["status"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
@@ -26,57 +24,44 @@ class WishlistModel {
 
 class Datum {
   Datum({
+    this.rating,
     this.id,
-    this.user,
-    this.courses,
-    this.v,
-    this.courseDetails,
-  });
-
-  String? id;
-  String? user;
-  String? courses;
-  int? v;
-  List<CourseDetail>? courseDetails;
-
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["_id"],
-        user: json["user"],
-        courses: json["courses"],
-        v: json["__v"],
-        courseDetails: List<CourseDetail>.from(
-            json["course_details"].map((x) => CourseDetail.fromJson(x))),
-      );
-}
-
-class CourseDetail {
-  CourseDetail({
-    this.id,
+    this.category,
     this.title,
     this.description,
     this.imgName,
     this.price,
+    this.totalStar,
     this.teacher,
+    this.ratedUsers,
     this.modules,
     this.imgPath,
   });
 
+  int? rating;
   String? id;
+  String? category;
   String? title;
   String? description;
   String? imgName;
-  dynamic price;
+  int? price;
+  int? totalStar;
   String? teacher;
+  int? ratedUsers;
   List<Module>? modules;
   String? imgPath;
 
-  factory CourseDetail.fromJson(Map<String, dynamic> json) => CourseDetail(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        rating: json["rating"],
         id: json["_id"],
+        category: json["category"],
         title: json["title"],
         description: json["description"],
         imgName: json["imgName"],
         price: json["price"],
+        totalStar: json["totalStar"],
         teacher: json["teacher"],
+        ratedUsers: json["ratedUsers"],
         modules:
             List<Module>.from(json["modules"].map((x) => Module.fromJson(x))),
         imgPath: json["imgPath"],
@@ -85,15 +70,24 @@ class CourseDetail {
 
 class Module {
   Module({
-    required this.vidioTitle,
-    required this.vedioPath,
+    this.videoTitle,
+    this.id,
+    this.vidioTitle,
+    this.vedioPath,
+    this.notePath,
   });
 
+  String? videoTitle;
+  String? id;
   String? vidioTitle;
   String? vedioPath;
+  String? notePath;
 
   factory Module.fromJson(Map<String, dynamic> json) => Module(
+        videoTitle: json["videoTitle"],
+        id: json["_id"],
         vidioTitle: json["vidioTitle"],
         vedioPath: json["vedioPath"],
+        notePath: json["notePath"],
       );
 }

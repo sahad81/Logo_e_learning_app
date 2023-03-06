@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:logo_e_learning/const/colors.dart';
 import 'package:logo_e_learning/const/kwidgets.dart';
@@ -8,8 +7,8 @@ import 'package:logo_e_learning/controllers/feadback_provider.dart';
 
 
 import 'package:provider/provider.dart';
-import 'dart:convert';
 
+// ignore: must_be_immutable
 class FeedBack extends StatelessWidget {
   FeedBack({super.key});
 
@@ -229,6 +228,7 @@ class FeedBack extends StatelessWidget {
                                 await InternetConnectionChecker().hasConnection;
 
                             internet == false
+                                // ignore: use_build_context_synchronously
                                 ? ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content:Text(
@@ -236,6 +236,7 @@ class FeedBack extends StatelessWidget {
                                 : null;
                           
                           
+                            // ignore: use_build_context_synchronously
                             internet ? validation(context) : null;
                           },
                           style: ElevatedButton.styleFrom(

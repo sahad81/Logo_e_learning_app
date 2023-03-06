@@ -58,6 +58,7 @@ class LearningPage extends StatelessWidget {
                                   builder: (context) =>
                                       //Twxt1(modules: data.modules!)
                                       Curriculem(
+                                        titleText:data.title.toString() ,
                                         modules: data.modules!,
                                         img:
                                             "http://$ipadressimg:3000/${data.imgPath.toString()}",

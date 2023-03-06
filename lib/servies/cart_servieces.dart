@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:logo_e_learning/const/strings.dart';
 import 'package:logo_e_learning/model/getcart_model.dart';
 
-import '../const/widgets/showdialogs.dart';
+
 import '../const/widgets/snackbar.dart';
 import '../controllers/shared_prefs_servieses.dart';
 
@@ -50,42 +50,39 @@ class CartServieces {
       Dio dio = Dio();
       final tocken = await UserServieces.getToken();
 
-      final response = await dio.get("$BaseUrl/user/getCart",
-          options: Options(headers: {
-            "Authorization": tocken,
-          
-          })).timeout(const Duration(seconds: 15));
-        
-      if (response.statusCode==200) {
-               final  carts = CartModel.fromJson(response.data);
-           log(carts.toString());
-          return carts;
-            
-        
-      }
-          
+      final response = await dio
+          .get("$BaseUrl/user/getCart",
+              options: Options(headers: {
+                "Authorization": tocken,
+              }))
+          .timeout(const Duration(seconds: 15));
+      log(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        final carts = CartModel.fromJson(response.data);
+        log(carts.toString());
+        return carts;
+        }
     } on SocketException {
       // ShowDialiogfn(context, "Check your network settings and try again",
       //     "Can't reacah the internet");
-          return ;
+      return;
     } on TimeoutException {
       // ShowDialiogfn(context, "Check your network settings and try again",
       //     "Can't reacah the internet");
-          return ;
+      return;
     } on DioError {
       // ShowDialiogfn(context, "Check your network settings and try again",
       //     "Can't reacah the internet");
-          return;
+      return;
     } catch (e) {
-      
-   
       // ShowDialiogfn(context, "Check your network settings and try again",
       //     "Can't reacah the interen");
-            return ;
+      return;
     }
   }
+
 //-----------------------------------------remove from carts=========================================\\
-   RemoveFromCart(String id, context) async {
+  RemoveFromCart(String id, context) async {
     try {
       final tocken = await UserServieces.getToken();
 
@@ -96,8 +93,7 @@ class CartServieces {
         ),
       ); //
       if (response.statusCode == 200 || response.statusCode == 201) {
-        showSnackBar(
-            "Successfully Removed from cart", Colors.green, context);
+        showSnackBar("Successfully Removed from cart", Colors.green, context);
       }
     } on SocketException {
       showSnackBar("No internet connection", Colors.red, context);
@@ -109,7 +105,7 @@ class CartServieces {
         showSnackBar("course already Removed", Colors.red, context);
       }
     } catch (e) {
-    log(e.toString());
+      log(e.toString());
     }
   }
 }

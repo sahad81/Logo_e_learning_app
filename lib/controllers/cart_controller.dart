@@ -52,10 +52,10 @@ class CartProvider extends ChangeNotifier {
     if (data == null) {
       _loading = false;
       _error = true;
-      log("eroor");
+      log("eroor  cart");
       notifyListeners();
     } else {
-      log('yes');
+      log('cart set');
       cartList.add(data);
       _loading = false;
       notifyListeners();
@@ -78,7 +78,7 @@ class CartProvider extends ChangeNotifier {
 
 
  Future<void> checkOut(BuildContext context)async{
-final  url="https://www.youtube.com/watch?v=T0qbFgbFhg0&ab_channel=HeyFlutter%E2%80%A4com";
+const  url="https://www.youtube.com/watch?v=T0qbFgbFhg0&ab_channel=HeyFlutter%E2%80%A4com";
 
 if (!await launchUrl(Uri.parse(url ))) {
   // ignore: use_build_context_synchronously
